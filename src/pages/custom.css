@@ -1,0 +1,100 @@
+/* import comfortaa ttf file */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('../assets/fonts/Comfortaa-VariableFont_wght.ttf') format('truetype');
+}
+
+.comfortaa {
+  font-family: 'Comfortaa', cursive;
+}
+
+.icon-white {
+  fill: white !important;
+}
+/* custom scrollbars */
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+  height: 12px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Subtle gray color for the scroll track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #E44548; /* Scroll button color */
+  border-radius: 6px; /* Rounded corners for the scroll button */
+  border: 3px solid #f0f0f0; /* Padding around the scroll button */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E44548 #f0f0f0;
+}
+
+/* customer support chat panel */
+.chat-window {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px 8px 0 0;
+  z-index: 1000;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.chat-window.collapsed {
+  height: 50px; /* Height of the header when collapsed */
+}
+
+.chat-window.open {
+  height: 400px; /* Full height when open */
+}
+
+.chat-header {
+  background-color: #E44548;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 50px); /* Adjust height based on header height */
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-messenger {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.chat-messenger input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.chat-messenger button {
+  padding: 10px 20px;
+  background-color: #E44548;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

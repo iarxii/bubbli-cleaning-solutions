@@ -1,0 +1,63 @@
+<header style={styles.navbar}>
+      <div style={styles.navWrap}>
+        <nav style={styles.nav}>
+          <div style={styles.logo}>
+            {/* Placeholder for your logo */}
+            {/* <h1 style={styles.logoText}>Bubbli Cleaning Solutions</h1> */}
+            <img src={logo} style={styles.logo} alt="Bubbli Logo" />
+          </div>
+          <ul style={styles.navList}>
+            <li style={styles.navItem}>
+              <Link to="/clients/home" style={styles.link}>
+                Shop
+              </Link>
+            </li>
+            {/* <li style={styles.navItem}>
+            <Link to="/clients/products" style={styles.link}>
+              Catalogue
+            </Link>
+          </li> */}
+            {!isLoggedIn ? (
+              <li style={styles.navItem}>
+                <Link to="/clients/login" style={styles.link}>
+                  Login
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li style={styles.navItem}>
+                  <Link to="/clients/orders" style={styles.link}>
+                    Orders
+                  </Link>
+                </li>
+                <li style={styles.navItem}>
+                  <button
+                    onClick={() => setCartOpen(true)}
+                    style={styles.cartButton}
+                  >
+                    Cart ({cartItems.length})
+                  </button>
+                </li>
+                <li style={styles.navItem}>
+                  <Link to="/clients/profile" style={styles.profileLink}>
+                    <img
+                      src={avatar}
+                      alt="User Profile"
+                      style={styles.profileImage}
+                    />
+                    <span style={styles.profileName}>{userProfile.name}</span>
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      </div>
+
+      <Cart
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        cartItems={cartItems}
+        onRemoveItem={handleRemoveItem}
+      />
+    </header>

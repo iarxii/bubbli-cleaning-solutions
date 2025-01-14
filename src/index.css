@@ -5,8 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  background-color: #e1e1e1;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +15,12 @@
   /* custom */
   --headings-color: #000000;
   --text-color: #333333;
+  --success-green: #1EBA15;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Import font files */
 @font-face {
@@ -37,7 +41,7 @@
 
 /* Set the default font */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -48,7 +52,7 @@ body {
 /* Ensure all elements inherit the font */
 * {
   font-family: inherit;
-  color: var(--text-color);
+  /* color: var(--text-color); */
 }
 
 a {
@@ -83,6 +87,10 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.icon-white {
+  fill: white !important;
 }
 
 @media (prefers-color-scheme: light) {

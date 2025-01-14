@@ -1,46 +1,72 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Landing() {
-  const valueSavingsItems = [
-    { id: 1, name: "Value Pack 1", price: "R29.99", image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Value Pack 2", price: "R39.99", image: "https://via.placeholder.com/150" },
-    { id: 3, name: "Bundle Offer", price: "R49.99", image: "https://via.placeholder.com/150" },
-    { id: 4, name: "Cleaning Kit", price: "R59.99", image: "https://via.placeholder.com/150" },
-  ];
+import ValuePacks from "./components/ValuePacks";
 
+// custom css
+import "./custom.css";
+
+// import media
+import meshBackground from "../assets/brand/mesh-white-0_7.png";
+import heroImage from "../assets/pexels/pexels-liliana-drew-9462650.jpg";
+import bubbliLogo from "../assets/bubbli-icon_white.svg";
+import savingsTreeIcon from "../assets/icons/icons8-growing-money-100-green.png";
+
+
+function Landing() {
   return (
-    <div style={styles.container}>
+    <div className="container mx-auto p-4" style={styles.container}>
       {/* Hero Section */}
-      <section style={styles.hero}>
-        <h1 style={styles.heroTitle}>Welcome to Bubbli Cleaning Solutions</h1>
-        <p style={styles.heroSubtitle}>Give your home a Bubbli Clean with our premium cleaning products!</p>
-        <Link to="/clients/products" style={styles.heroButton}>
-          Shop Now
-        </Link>
+      <section style={styles.hero} className="shadow-lg">
+        {/* <div style={styles.heroGradient}> */}
+        <div style={styles.heroWrap} className="gap-y-4">
+          <img
+            src={bubbliLogo}
+            alt="Bubbli Cleaning Solutions"
+            style={styles.heroLogo}
+          />
+          <h1 style={styles.heroTitle}>
+            <span
+              className="comfortaa"
+              style={{ fontWeight: "bold", fontSize: "40px" }}
+            >
+              bubbli cleaning solutions
+            </span>
+          </h1>
+          <p style={styles.heroSubtitle}>Give your home a Bubbli Clean!</p>
+          <Link to="/clients/products" style={styles.heroButton}>
+            Shop Now
+          </Link>
+        </div>
+        {/* </div> */}
       </section>
 
       {/* Value Savings Section */}
-      <section style={styles.valueSavings}>
-        <h2 style={styles.sectionTitle}>Value Savings</h2>
-        <div style={styles.scrollContainer}>
-          {valueSavingsItems.map((item) => (
-            <div key={item.id} style={styles.card}>
-              <img src={item.image} alt={item.name} style={styles.cardImage} />
-              <h3 style={styles.cardTitle}>{item.name}</h3>
-              <p style={styles.cardPrice}>{item.price}</p>
-            </div>
-          ))}
+      <section>
+        <div className="flex flex-col items-center justify-center gap-y-4">
+          <img
+            src={savingsTreeIcon}
+            alt="savings tree"
+            style={{ height: "100px" }}
+          />
+          <h2 style={styles.valuePacksSectionTitle}>
+            Get a Savings Pack for more Clean, for Longer!
+          </h2>
         </div>
+        <ValuePacks />
       </section>
 
       {/* Call to Action Section */}
-      <section style={styles.cta}>
-        <h2 style={styles.ctaTitle}>Explore Our Full Catalogue</h2>
-        <p style={styles.ctaSubtitle}>Discover the perfect cleaning solutions for every need.</p>
-        <Link to="/clients/products" style={styles.ctaButton}>
-          View Catalogue
-        </Link>
+      <section style={styles.cta} className="shadow-lg">
+        <div style={styles.ctaWrap}>
+          <h2 style={styles.ctaTitle}>Explore Our Full Catalogue</h2>
+          <p style={styles.ctaSubtitle}>
+            Discover the perfect cleaning solutions for every need.
+          </p>
+          <Link to="/clients/products" style={styles.ctaButton}>
+            View Catalogue
+          </Link>
+        </div>
       </section>
     </div>
   );
@@ -53,25 +79,62 @@ const styles = {
   },
   hero: {
     textAlign: "center",
-    padding: "50px 20px",
-    backgroundColor: "#007BFF",
+    // padding: "50px 20px",
+    backgroundColor: "#E44548",
+    // backgroundImage:"#F7B6B6",
+    // backgroundImage: `url(${heroImage})`,
+    // backgroundClip: "padding-box",
+    // backgroundSize: "cover", // Ensures the background image covers the entire container
+    // backgroundPosition: "center", // Centers the background image
+    // backgroundAttachment: "fixed", // Fixes the background image in place
     color: "#fff",
-    borderRadius: "8px",
+    borderRadius: "16px",
     marginBottom: "40px",
+    justifyContent: "center",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  },
+  heroWrap: {
+    display: "flex",
+    flexDirection: "column", // Ensures content is stacked vertically
+    alignItems: "center", // Centers content horizontally
+    justifyContent: "center", // Centers content vertically
+    padding: "50px 20px",
+    width: "100%",
+    height: "100%",
+    backgroundImage: `url(${meshBackground})`,
+    backgroundClip: "padding-box",
+    backgroundSize: "cover", // Ensures the background image covers the entire container
+    backgroundPosition: "center", // Centers the background image
+    backgroundAttachment: "fixed", // Fixes the background image in place
+  },
+  heroGradient: {
+    width: "100%",
+    height: "100%",
+    background:
+      "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(228,69,72,1) 100%)",
+    borderRadius: "8px",
+  },
+  heroLogo: {
+    width: "250px",
+    height: "250px",
+    objectFit: "cover",
+    // borderRadius: "50%",
   },
   heroTitle: {
     fontSize: "36px",
     marginBottom: "10px",
+    color: "#fff",
   },
   heroSubtitle: {
-    fontSize: "18px",
+    fontSize: "24px",
     marginBottom: "20px",
+    color: "#fff",
   },
   heroButton: {
     padding: "10px 20px",
     fontSize: "16px",
     backgroundColor: "#fff",
-    color: "#007BFF",
+    color: "#E44548",
     textDecoration: "none",
     borderRadius: "5px",
     fontWeight: "bold",
@@ -83,6 +146,12 @@ const styles = {
     fontSize: "24px",
     marginBottom: "20px",
     textAlign: "center",
+  },
+  valuePacksSectionTitle: {
+    fontSize: "24px",
+    marginBottom: "20px",
+    textAlign: "center",
+    color: "#E44548",
   },
   scrollContainer: {
     display: "flex",
@@ -111,28 +180,40 @@ const styles = {
   },
   cardPrice: {
     fontSize: "14px",
-    color: "#007BFF",
+    color: "#E44548",
     fontWeight: "bold",
   },
   cta: {
     textAlign: "center",
+    backgroundColor: "#E44548",
+    borderRadius: "16px",
+    // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  },
+  ctaWrap: {
+    width: "100%",
+    margin: "0 auto",
     padding: "30px 20px",
-    backgroundColor: "#f1f1f1",
-    borderRadius: "8px",
+    backgroundImage: `url(${meshBackground})`,
+    backgroundClip: "padding-box",
+    backgroundSize: "cover", // Ensures the background image covers the entire container
+    backgroundPosition: "center", // Centers the background image
+    backgroundAttachment: "fixed", // Fixes the background image in place
   },
   ctaTitle: {
     fontSize: "24px",
     marginBottom: "10px",
+    color: "#fff",
   },
   ctaSubtitle: {
     fontSize: "16px",
     marginBottom: "20px",
+    color: "#fff",
   },
   ctaButton: {
     padding: "10px 20px",
     fontSize: "16px",
-    backgroundColor: "#007BFF",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#E44548",
     textDecoration: "none",
     borderRadius: "5px",
     fontWeight: "bold",
