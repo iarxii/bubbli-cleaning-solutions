@@ -46,7 +46,7 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const shopLinks = [
-  { name: 'Catalogue', description: 'View our product catalogue', href: '#', icon: faBook },
+  { name: 'Home Catalogue', description: 'View our product catalogue', href: '#', icon: faBook },
   { name: 'Orders', description: 'Track your orders', href: '#', icon: faClipboardList },
   { name: 'Profile', description: 'Manage your profile', href: '#', icon: faUser },
   { name: 'Subscriptions', description: 'Manage your subscriptions', href: '#', icon: faBoxOpen },
@@ -200,9 +200,9 @@ function Header() {
      
       {/* Mobile menu is visible on screen less than large */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden" style={styles.mobileNavbar}>
-        <div style={styles.mobileNavbar}>
-          <div className="fixed inset-0 z-10" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div style={{paddingTop:"200px"}}>
+          <div className="fixed inset-0 z-10z" />
+          <DialogPanel className="fixed inset-y-0 right-0 z-10z w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">bubbli cleaning solutions</span>
@@ -315,7 +315,7 @@ const styles = {
   },
   mobileNavbar: {
     padding: "10px 20px",
-    backgroundColor: "#fff",
+    backgroundColor: "#E44548",
     color: "#fff",
     zIndex: "1010",
   },

@@ -16,6 +16,7 @@
   --headings-color: #000000;
   --text-color: #333333;
   --success-green: #1EBA15;
+  --success-gold: #e49009;
 }
 
 @tailwind base;

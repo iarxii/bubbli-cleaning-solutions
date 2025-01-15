@@ -34,7 +34,7 @@ function Landing() {
             </span>
           </h1>
           <p style={styles.heroSubtitle}>Give your home a Bubbli Clean!</p>
-          <Link to="/clients/products" style={styles.heroButton}>
+          <Link to="/clients/home" style={styles.heroButton}>
             Shop Now
           </Link>
         </div>
@@ -63,7 +63,7 @@ function Landing() {
           <p style={styles.ctaSubtitle}>
             Discover the perfect cleaning solutions for every need.
           </p>
-          <Link to="/clients/products" style={styles.ctaButton}>
+          <Link to="/clients/home" style={styles.ctaButton}>
             View Catalogue
           </Link>
         </div>

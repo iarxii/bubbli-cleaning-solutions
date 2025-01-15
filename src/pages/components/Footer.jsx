@@ -19,7 +19,7 @@ function Footer() {
           {/* About Section */}
           <div style={styles.section} className="flex flex-col justify-center">
             <h3 style={styles.sectionTitle}>About Us</h3>
-            <div className="h-1 w-16 bg-white mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>
               At Bubbli Cleaning Solutions, we provide premium cleaning products
               to keep your home spotless and hygienic. Your satisfaction is our
@@ -30,7 +30,7 @@ function Footer() {
           {/* Quick Links Section */}
           <div style={styles.section} className="flex flex-col justify-center">
             <h3 style={styles.sectionTitle}>Quick Links</h3>
-            <div className="h-1 w-16 bg-white mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <ul style={styles.list}>
               <li>
                 <Link to="/clients/home" style={styles.link}>
@@ -58,7 +58,7 @@ function Footer() {
           {/* Connect with Us Section */}
           <div style={styles.section} className="flex flex-col justify-center">
             <h3 style={styles.sectionTitle}>Connect with Us</h3>
-            <div className="h-1 w-16 bg-white mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>Email: support@bubbli.co.za</p>
             <p style={styles.text}>Phone: 071 269 4232</p>
             <div style={styles.socialIcons}>

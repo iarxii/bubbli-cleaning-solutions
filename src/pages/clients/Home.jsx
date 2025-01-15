@@ -58,9 +58,9 @@ function Home() {
     <div>
       {/* Hero Section */}
       <section style={styles.hero} className="grid gap-y-4">
-        <h1>Welcome to Your Home Catalogue</h1>
-        <p>
-          Find all the cleaning and sanitizing products you need in one place!
+        <h1 className="text-[#E44548]">Home Catalogue</h1>
+        <p className="text-[#000000]">
+          Find all the amazing cleaning and sanitizing products you need in one place!
         </p>
       </section>
 
@@ -68,7 +68,7 @@ function Home() {
         <div className="grid grid-cols-12 gap-4">
           {/* Community Rewards Subscription */}
           <div className="col-span-12 rounded-lg bg-white p-4 shadow-md lg:col-span-4">
-            <h1 className="mb-2 text-xl font-bold">Subscribe Today!</h1>
+            <h1 className="mb-2 text-xl font-bold text-[#E44548]">Subscribe Today!</h1>
             <p className="mb-2 text-black">
               Get your cleaning supplies conveniently delivered to your doorstep
               every month. No need to travel and join the long queues.
@@ -80,6 +80,12 @@ function Home() {
 
           {/* Value Savings Section */}
           <div className="col-span-12 lg:col-span-8">
+            <div className="flex gap-x-1">
+              <img src="../../assets/icons/icons8-growing-money-100-green.png" alt="savings tree" style="height: 50px; filter: invert(0);" />
+              <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
+            </div>
+          
+          <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
             <ValuePacks />
           </div>
         </div>
