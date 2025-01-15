@@ -46,15 +46,15 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const shopLinks = [
-  { name: 'Home Catalogue', description: 'View our product catalogue', href: '#', icon: faBook },
-  { name: 'Orders', description: 'Track your orders', href: '#', icon: faClipboardList },
-  { name: 'Profile', description: 'Manage your profile', href: '#', icon: faUser },
-  { name: 'Subscriptions', description: 'Manage your subscriptions', href: '#', icon: faBoxOpen },
-  { name: 'Social media', description: 'Follow us on social media', href: '#', icon: faShareAlt },
+  { name: 'Home Catalogue', description: 'View our product catalogue', href: 'client/home', icon: faBook },
+  { name: 'Orders', description: 'Track your orders', href: 'client/orders', icon: faClipboardList },
+  { name: 'Profile', description: 'Manage your profile', href: 'client/profile', icon: faUser },
+  { name: 'Subscriptions', description: 'Manage your subscriptions', href: 'client/subscriber', icon: faBoxOpen },
+  { name: 'Social media', description: 'Follow us on social media', href: 'https://linktr.ee/', icon: faShareAlt },
 ]
 const callsToAction = [
-  { name: 'bubbli products demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
+  { name: 'bubbli products demo', href: 'https://youtube.com/', icon: PlayCircleIcon },
+  { name: 'Contact sales', href: 'customercare/support/', icon: PhoneIcon },
 ]
 
 function Header() {
@@ -141,10 +141,10 @@ function Header() {
                           <FontAwesomeIcon icon={item.icon} aria-hidden="true" className="size-6 text-[#E44548] group-hover:text-[#1EBA15]" />
                         </div>
                         <div className="flex-auto">
-                          <a href={item.href} className="block font-semibold text-[#E44548] group-hover:text-[#1EBA15]">
+                          <Link to={item.href} className="block font-semibold text-[#E44548] group-hover:text-[#1EBA15]">
                             {item.name}
                             <span className="absolute inset-0" />
-                          </a>
+                          </Link>
                           <p className="mt-1 text-[#E44548] group-hover:text-[#1EBA15]">{item.description}</p>
                         </div>
                       </div>

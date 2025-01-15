@@ -50,6 +50,63 @@ body {
   min-height: 100vh;
 }
 
+.glassmorphic {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.8; /* Reduce opacity to 80% */
+  pointer-events: none; /* Ensure the image does not interfere with other elements */
+  object-fit: cover; /* Cover the entire container */
+  object-position: top; /* Center the image */
+  
+}
+
+.bg-animation::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(228, 69, 72, 0.6); /* Color overlay with 60% opacity */
+  mix-blend-mode: overlay; /* Blend mode to apply the color overlay */
+  pointer-events: none; /* Ensure the overlay does not interfere with other elements */
+}
+
+.rootWrap {
+  height: 100%;
+  width: 100%;
+}
+.bg-animation-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  pointer-events: none; /* Ensure the image does not interfere with other elements */
+  background-image: url('src/assets/video/bubbles_peach_anim.gif');
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-size: cover; /* Scale the background image to cover the entire container */
+  background-clip: content-box; /* Clip the background to the content box */
+}
+
 /* Ensure all elements inherit the font */
 * {
   font-family: inherit;
