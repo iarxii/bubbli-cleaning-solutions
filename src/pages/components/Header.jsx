@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faClipboardList, faUser, faBars, faBoxOpen, faShareAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faClipboardList, faUser, faBars, faClose, faBoxOpen, faShareAlt, faStore, faGifts, faInfoCircle, faHandHoldingDollar, faQuestionCircle, faScroll } from '@fortawesome/free-solid-svg-icons';
 
 // import media
 import logo from "../../assets/bubbli-icon_white.svg";
@@ -46,10 +46,10 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const shopLinks = [
-  { name: 'Home Catalogue', description: 'View our product catalogue', href: 'client/home', icon: faBook },
-  { name: 'Orders', description: 'Track your orders', href: 'client/orders', icon: faClipboardList },
-  { name: 'Profile', description: 'Manage your profile', href: 'client/profile', icon: faUser },
-  { name: 'Subscriptions', description: 'Manage your subscriptions', href: 'client/subscriber', icon: faBoxOpen },
+  { name: 'Home Catalogue', description: 'View our product catalogue', href: 'clients/home', icon: faBook },
+  { name: 'Orders', description: 'Track your orders', href: 'clients/orders', icon: faClipboardList },
+  { name: 'Profile', description: 'Manage your profile', href: 'clients/profile', icon: faUser },
+  { name: 'Subscriptions', description: 'Manage your subscriptions', href: 'clients/subscriber', icon: faBoxOpen },
   { name: 'Social media', description: 'Follow us on social media', href: 'https://linktr.ee/', icon: faShareAlt },
 ]
 const callsToAction = [
@@ -81,8 +81,30 @@ function Header() {
     setCartItems([...cartItems, item]);
   };
 
+  // State to track scroll position and navbar visibility
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setIsNavbarHidden(true);
+      } else {
+        setIsNavbarHidden(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <header className="bg-dark-900 text-white" style={styles.navbar}>
+    <header className={`bg-dark-900 text-white ${isNavbarHidden ? "translate-y-[-100%]" : "translate-y-0"} transition-transform duration-300`} 
+      style={styles.navbar}>
       <div style={styles.navWrap}>
         <div style={styles.nav}>
           <nav aria-label="Global" className="container mx-auto flex max-w-7xlz items-center justify-between p-6 lg:px-8">
@@ -107,7 +129,7 @@ function Header() {
               >
                 <span className="sr-only">Open main menu</span>
                 {/* <Bars3Icon aria-hidden="true" className="size-6 text-white icon-white" style={{ color: '#fff' }} /> */}
-                <FontAwesomeIcon icon={faBars} className="h-6 w-6 text-white icon-white" style={{ color: '#fff'}} />
+                <FontAwesomeIcon icon={faBars} className="h-6 w-6 icon-white" style={{ color: '#E44548'}} />
               </button>
             </div>
             <PopoverGroup className="hidden lg:flex lg:gap-x-4 items-center">
@@ -166,7 +188,7 @@ function Header() {
               </Popover>
 
               <Link to="/clients/products" className="text-sm/6 font-semibold flex gap-x-2 items-center" style={styles.link}>
-                <span>Get Community Rewards</span>
+                <span>Community Rewards</span>
                 <img src={rewardsGif} alt="Reward icon by Icons8" className="h-12 w-12" />
               </Link>
 
@@ -199,78 +221,121 @@ function Header() {
       </div>
      
       {/* Mobile menu is visible on screen less than large */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden" style={styles.mobileNavbar}>
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div style={{paddingTop:"200px"}}>
           <div className="fixed inset-0 z-10z" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-10z w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">bubbli cleaning solutions</span>
-                <img
-                  alt="bubbli cleaning solutions"
-                  src={logo}
-                  className="h-8 w-auto"
-                />
-              </a>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700 bg-white"
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  <Disclosure as="div" className="-mx-3">
-                    <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                      Product
-                      <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
-                    </DisclosureButton>
-                    <DisclosurePanel className="mt-2 space-y-2">
-                      {[...shopLinks, ...callsToAction].map((item) => (
-                        <DisclosureButton
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </DisclosureButton>
-                      ))}
-                    </DisclosurePanel>
-                  </Disclosure>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Features
+          <DialogPanel className="fixed inset-y-0 right-0 z-10z w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-lg"
+             style={styles.mobileNavbar}>
+              <div style={styles.mobileNavbarWrap}>
+                <div className="flex items-center justify-between">
+                  <a href="#" className="-m-1.5 p-1.5 flex items-center gap-x-2.5z">
+                    <span className="sr-only">bubbli cleaning solutions</span>
+                    <img
+                      alt="bubbli cleaning solutions"
+                      src={logo}
+                      className="h-20 w-auto"
+                    />
+                    <span className="text-white pt-5">Cleaning Solutions</span>
                   </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="-m-2.5 rounded-md p-2.5 text-gray-700 bg-white"
                   >
-                    Marketplace
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Company
-                  </a>
+                    <span className="sr-only">Close menu</span>
+                    <FontAwesomeIcon icon={faClose} aria-hidden="true" className="size-6 text-[#E44548]" />
+                  </button>
                 </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
+                <div className="mt-6 flow-root">
+                  <div className="-my-6 divide-y divide-gray-500/10">
+                    <div className="space-y-2 py-6">
+                      <Disclosure as="div" className="-mx-3">
+                        <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 shadow-lg" 
+                          style={styles.mobileNavbarStoreButton}>
+                          <div className="flex items-center gap-x-2.5">
+                            <FontAwesomeIcon icon={faStore} className="h-6 w-6 text-[#E44548] fill-current" aria-hidden="true" />
+                            Bubbli Store
+                          </div>
+                          <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
+                        </DisclosureButton>
+                        <DisclosurePanel className="mt-2 space-y-2 bg-white rounded-lg shadow-lg">
+                          {[...shopLinks, ...callsToAction].map((item) => (
+                            <DisclosureButton
+                              key={item.name}
+                              as="a"
+                              // href={item.href}
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-white hover:bg-gray-50"
+                            >
+                              <Link to={item.href} className="text-[#E44548]">
+                                {item.name}
+                              </Link>
+                            </DisclosureButton>
+                          ))}
+                        </DisclosurePanel>
+                      </Disclosure>
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faInfoCircle} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>About Us</span>
+                        </div>
+                      </Link>
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faGifts} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>Bubbli Community Rewards</span>
+                        </div>
+                      </Link>
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faHandHoldingDollar} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>Refer a Friend</span>
+                        </div>
+                      </Link>
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faQuestionCircle} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>FAQs</span>
+                        </div>
+                      </Link>
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faScroll} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>Policies</span>
+                        </div>
+                      </Link>
+                      
+                    </div>
+                    <div className="py-6">
+                      <Link
+                        to="#"
+                        style={styles.loginButton}
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-gray-50 text-center shadow-lg"
+                      >
+                        <div className="flex items-center gap-x-2.5">
+                          <FontAwesomeIcon icon={faUser} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <span>Log in</span>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            
           </DialogPanel>
         </div>
       </Dialog>
@@ -314,10 +379,33 @@ const styles = {
     
   },
   mobileNavbar: {
-    padding: "10px 20px",
+    padding: "0px",
     backgroundColor: "#E44548",
     color: "#fff",
     zIndex: "1010",
+  },
+  mobileNavbarWrap: {
+    backgroundImage: `url(${meshBackground})`,
+    backgroundClip: "padding-box",
+    backgroundSize: "cover", // Ensures the background image covers the entire container
+    backgroundPosition: "center", // Centers the background image
+    height: "100%",
+    padding: "20px",
+  },
+  mobileNavbarStoreButton: {
+    backgroundColor: "#fff",
+    color: "#E44548",
+    padding: "10px",
+    borderRadius: "10px",
+    outline: "none", 
+    textDecoration: "none",
+  },
+  mobileNavbarStoreLinks: {
+    color: "#fff",
+  },
+  mobileNavbarLinkButtons: {
+    color: "#fff",
+    textDecoration: "none",
   },
   logo: {
     display: "flex",
@@ -366,8 +454,8 @@ const styles = {
     color: "#E44548",
   },
   mobileMenuButton: {
-    backgroundColor: "#E44548",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#E44548",
   },
   mobileMenuText: {
     fontSize: "16px",

@@ -17,6 +17,7 @@
   --text-color: #333333;
   --success-green: #1EBA15;
   --success-gold: #e49009;
+  --grey-color: #f7f7f7;
 }
 
 @tailwind base;
@@ -51,10 +52,21 @@ body {
 }
 
 .glassmorphic {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.glassmorphic-red {
+  /* min-height: 100vh; */
+  position: relative;
+  z-index: 1;
+  background: rgba(211, 58, 58, 0.1); /* Semi-transparent background */
   /*border-radius: 16px;*/ /* Rounded corners */
   backdrop-filter: blur(10px); /* Blur effect */
   -webkit-backdrop-filter: blur(10px); /* Blur effect for Safari */
@@ -68,7 +80,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.3; /* Reduce opacity to 30% */
+  opacity: 0.6; /* Reduce opacity to 60% */
   pointer-events: none; /* Ensure the image does not interfere with other elements */
   object-fit: cover; /* Cover the entire container */
   object-position: center; /* Center the image */
@@ -123,7 +135,8 @@ a:hover {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.2em;
+  font-weight: 500;
   line-height: 1.1;
   color: var(--headings-color);
 }

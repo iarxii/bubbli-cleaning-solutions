@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+// import components
 import ValuePacks from "../components/ValuePacks";
+import ErrorBoundary from "../components/utils/ErrorBoundary"; // debugging
 
 // import media
-import placholder from "../../assets/placeholder-500x500.jpg";
+import placholder from "../../assets/placeholder-productimg.jpg";
+import savingsTreeIcon from "../../assets/icons/icons8-growing-money-100-green.png";
+import meshBackground from "../../assets/brand/mesh-white-0_7.png";
+import meshBackgroundRed from "../../assets/brand/mesh-red-1.png";
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 function Home() {
-
   // Mock product data
   const mockProducts = Array.from({ length: 20 }, (_, index) => ({
     id: index + 1,
@@ -18,6 +26,8 @@ function Home() {
     image: placholder,
     category: index % 2 === 0 ? "Cleaning" : "Sanitizing",
   }));
+
+  console.log("mockProducts:", mockProducts); // debug
 
   // State
   const [products, setProducts] = useState(mockProducts);
@@ -33,6 +43,8 @@ function Home() {
       (filter === "All" || product.category === filter) &&
       product.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+  console.log("filteredProducts:", filteredProducts); // debug
+
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -55,130 +67,165 @@ function Home() {
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section style={styles.hero} className="grid gap-y-4">
-        <h1 className="text-[#E44548]">Home Catalogue</h1>
-        <p className="text-[#000000]">
-          Find all the amazing cleaning and sanitizing products you need in one place!
-        </p>
-      </section>
-
-      <section className="container mx-auto p-4">
-        <div className="grid grid-cols-12 gap-4">
-          {/* Community Rewards Subscription */}
-          <div className="col-span-12 rounded-lg bg-white p-4 shadow-md lg:col-span-4">
-            <h1 className="mb-2 text-xl font-bold text-[#E44548]">Subscribe Today!</h1>
-            <p className="mb-2 text-black">
-              Get your cleaning supplies conveniently delivered to your doorstep
-              every month. No need to travel and join the long queues.
-            </p>
-            <p className="text-black">
-              From as little as R150.00 p.m, get the Clean Home Pack delivered to you.
-            </p>
-          </div>
-
-          {/* Value Savings Section */}
-          <div className="col-span-12 lg:col-span-8">
-            <div className="flex gap-x-1">
-              <img src="../../assets/icons/icons8-growing-money-100-green.png" alt="savings tree" style="height: 50px; filter: invert(0);" />
-              <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
-            </div>
-          
-          <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
-            <ValuePacks />
-          </div>
-        </div>
-      </section>
-
-      <section className="container mx-auto" style={styles.container}>
-        {/* Search and Filter Section */}
-        <section style={styles.filterSection}>
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            style={styles.searchInput}
-          />
-          <select
-            value={filter}
-            onChange={handleFilterChange}
-            style={styles.dropdown}
-          >
-            <option value="All">All Categories</option>
-            <option value="Cleaning">Cleaning</option>
-            <option value="Sanitizing">Sanitizing</option>
-          </select>
+    <ErrorBoundary>
+      <div>
+        {/* Hero Section */}
+        <section style={styles.hero} className="grid gap-y-4 shadow-md">
+          <h1 className="text-[#E44548]">Home Catalogue</h1>
+          <p className="text-[#000000]">
+            Find all the amazing cleaning and sanitizing products you need in one place!
+          </p>
         </section>
 
-        {/* Product Catalogue */}
-        <section style={styles.grid}>
-          {paginatedProducts.map((product) => (
-            <div key={product.id} style={styles.card}>
-              <img
-                src={product.image}
-                alt={product.name}
-                style={styles.productImage}
-              />
-              <h3 style={styles.productCardTitle}>{product.name}</h3>
-              <p style={styles.productCardPrice}>{product.currencySymbol} {product.price}</p>
-              <button
-                style={styles.addToCartButton}
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to Cart
-              </button>
+        <section className="container mx-auto p-4">
+          <div className="grid grid-cols-12 gap-4">
+            
+            {/* Value Savings Section */}
+            <div className="col-span-12 rounded-lg bg-white p-6 pb-0 lg:col-span-8 shadow-md">
+              <div className="flex gap-x-1 items-center">
+                <img src={savingsTreeIcon} 
+                  alt="savings tree" 
+                  style={{height: "50px", filter: "invert(0)"}} />
+                <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
+              </div>
+            
+              <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
+              <ValuePacks />
             </div>
-          ))}
+
+            {/* Community Rewards Subscription */}
+            <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4" 
+              style={styles.subscribeCTA}>
+                <div style={styles.subscribeCTAWrap}>
+                  <h1 className="mb-2 text-xl font-bold text-white">Subscribe Today!</h1>
+                  <p className="mb-2 text-white">
+                    Get your cleaning supplies conveniently delivered to your doorstep
+                    every month. No need to travel and join the long queues.
+                  </p>
+                  <p className="text-white">
+                    From as little as R150.00 p.m, get the Clean Home Pack delivered to you.
+                  </p>
+                  <Link to="/clients/subscribe" className="block mt-4 text-center bg-white text-[#E44548] py-2 px-4 rounded-lg">
+                    Subscribe Now
+                  </Link>
+                </div>
+            </div>
+            
+          </div>
         </section>
 
-        {/* Pagination */}
-        <section style={styles.pagination}>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              style={{
-                ...styles.pageButton,
-                backgroundColor:
-                  currentPage === index + 1 ? "#E44548" : "#f0f0f0",
-                color: currentPage === index + 1 ? "#fff" : "#000",
-              }}
+        <section className="container mx-auto">
+          {/* Search and Filter Section */}
+          <section style={styles.filterSection} className="flex items-center mb-0">
+            <FontAwesomeIcon icon={faSearch} className="text-[#E44548] pr-2 h-6" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              style={styles.searchInput}
+            />
+            <select
+              value={filter}
+              onChange={handleFilterChange}
+              style={styles.dropdown}
             >
-              {index + 1}
-            </button>
-          ))}
+              <option value="All">All Categories</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Sanitizing">Sanitizing</option>
+            </select>
+          </section>
+
+          {/* Product Catalogue */}
+          <section className="glassmorphic py-4">
+            <div className="h-2 w-12 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
+            <h2 className="text-[#E44548] text-center">Product Catalogue</h2>
+            <hr className="mt-4" />
+            <div style={styles.grid}>
+              {paginatedProducts.map((product) => (
+                <div key={product.id} style={styles.card} className="shadow-md">
+                  <Link to={`/clients/products/${product.id}`}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      style={styles.productImage}
+                    />
+                  </Link>
+                  <h3 style={styles.productCardTitle}>{product.name}</h3>
+                  <p style={styles.productCardPrice}>{product.currencySymbol} {product.price}</p>
+                  <button
+                    style={styles.addToCartButton}
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
+            </div>
+            
+            {/* Pagination */}
+            <div style={styles.pagination} className="mb-6">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className="shadow-md"
+                  onClick={() => handlePageChange(index + 1)}
+                  style={{
+                    ...styles.pageButton,
+                    backgroundColor:
+                      currentPage === index + 1 ? "#E44548" : "#f0f0f0",
+                    color: currentPage === index + 1 ? "#fff" : "#000",
+                  }}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+          </section>
+
+          
+
         </section>
-      </section>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
 
 // Styles
 const styles = {
   hero: {
+    // position: "sticky",
+    // top: "0",
+    zIndex: "10",
     textAlign: "center",
     padding: "40px 20px",
-    // backgroundColor: "#f7f7f7",
-    backgroundColor: "#F7B6B6",
+    backgroundColor: "#f7f7f7",
+    // backgroundColor: "#F7B6B6",
     marginBottom: "20px",
   },
   filterSection: {
+    position: "sticky",
+    top: "0",
+    zIndex: "10",
+    backgroundColor: "#f7f7f7",
     display: "flex",
     justifyContent: "space-between",
-    marginBottom: "20px",
-    padding: "0 20px",
+    // marginBottom: "20px",
+    padding: "20px",
   },
   searchInput: {
     flex: 1,
     marginRight: "10px",
     padding: "10px",
     fontSize: "16px",
+    backgroundColor: "#d1d1d1",
+    color: "#000",
   },
   dropdown: {
     padding: "10px",
     fontSize: "16px",
+    backgroundColor: "#d1d1d1",
+    color: "#000",
   },
   grid: {
     display: "grid",
@@ -224,10 +271,24 @@ productCardPrice: {
   },
   pageButton: {
     border: "1px solid #ddd",
-    padding: "10px",
+    padding: "20px",
     borderRadius: "5px",
     cursor: "pointer",
-    fontSize: "14px",
+    fontSize: "20px",
+  },
+  subscribeCTA: {
+    backgroundColor: "#E44548",
+    height: "100%",
+    width: "100%",
+  },
+  subscribeCTAWrap: {
+    padding: "20px",
+    backgroundImage: `url(${meshBackground})`,
+    backgroundClip: "padding-box",
+    backgroundSize: "cover", // Ensures the background image covers the entire container
+    backgroundPosition: "center", // Centers the background image
+    height: "100%",
+    width: "100%",
   },
 };
 

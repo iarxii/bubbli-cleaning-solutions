@@ -33,49 +33,61 @@ function Orders() {
   const [orders] = useState(mockOrders);
 
   return (
-    <div style={styles.container}>
-      {/* Orders List (8 columns) */}
-      <div style={styles.ordersContainer}>
-        <h2>Your Orders</h2>
-        {orders.length > 0 ? (
-          orders.map((order) => (
-            <div key={order.id} style={styles.orderCard}>
-              <h3>Order #{order.id}</h3>
-              <p>Date: {order.date}</p>
-              <p>Total: {order.total}</p>
-              <p>Status: {order.status}</p>
-              <ul>
-                {order.items.map((item, index) => (
-                  <li key={index}>
-                    {item.quantity} x {item.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        ) : (
-          <p>You have no past orders.</p>
-        )}
-      </div>
+    <div>
+      {/* Hero Section */}
+      <section style={styles.hero} className="grid gap-y-4 shadow-md">
+        <h1 className="text-[#E44548]">Purchase Orders</h1>
+        <p className="text-[#000000]">
+          View your past orders and track the status of your current orders
+        </p>
+      </section>
 
-      {/* Ads Section (4 columns) */}
-      <div style={styles.adsContainer}>
-        <h3>Special Offers</h3>
-        <div style={styles.adCard}>
-          <img
-            src="https://via.placeholder.com/300x200?text=Ad+1"
-            alt="Ad 1"
-            style={styles.adImage}
-          />
-          <p>Exclusive discounts on cleaning supplies!</p>
+      <div style={styles.container}>
+        {/* Orders List (8 columns) */}
+        <div style={styles.ordersContainer}>
+          <h3 className="text-[#E44548] mb-4">Your Orders ({orders.length})</h3>
+          <hr className="text-black h-4" />
+          {orders.length > 0 ? (
+            orders.map((order) => (
+              <div key={order.id} style={styles.orderCard} className="shadow-md">
+                <h3 style={styles.orderTitle}>Order #{order.id}</h3>
+                <p style={styles.orderText}>Date: {order.date}</p>
+                <p style={styles.orderText}>Total: {order.total}</p>
+                <p style={styles.orderText}>Status: {order.status}</p>
+                <ul>
+                  {order.items.map((item, index) => (
+                    <li key={index} style={styles.orderText}>
+                      {item.quantity} x {item.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <p>You have no past orders.</p>
+          )}
         </div>
-        <div style={styles.adCard}>
-          <img
-            src="https://via.placeholder.com/300x200?text=Ad+2"
-            alt="Ad 2"
-            style={styles.adImage}
-          />
-          <p>Buy 1 Get 1 Free on selected items!</p>
+
+        {/* Ads Section (4 columns) */}
+        <div style={styles.adsContainer}>
+          <h3 className="text-[#E44548] mb-4">Special Offers</h3>
+          <hr className="text-black h-4" />
+          <div style={styles.adCard}>
+            <img
+              src="https://via.placeholder.com/300x200?text=Ad+1"
+              alt="Ad 1"
+              style={styles.adImage}
+            />
+            <p style={styles.generalText}>Exclusive discounts on cleaning supplies!</p>
+          </div>
+          <div style={styles.adCard}>
+            <img
+              src="https://via.placeholder.com/300x200?text=Ad+2"
+              alt="Ad 2"
+              style={styles.adImage}
+            />
+            <p style={styles.generalText}>Buy 1 Get 1 Free on selected items!</p>
+          </div>
         </div>
       </div>
     </div>
@@ -84,6 +96,16 @@ function Orders() {
 
 // Styles
 const styles = {
+  hero: {
+    // position: "sticky",
+    // top: "0",
+    zIndex: "10",
+    textAlign: "center",
+    padding: "40px 20px",
+    backgroundColor: "#f7f7f7",
+    // backgroundColor: "#F7B6B6",
+    marginBottom: "20px",
+  },
   container: {
     display: "flex",
     gap: "20px",
@@ -103,6 +125,22 @@ const styles = {
     borderRadius: "8px",
     backgroundColor: "#f9f9f9",
   },
+  orderTitle: {
+    fontSize: "18px",
+    marginBottom: "10px",
+    fontWeight: "bold",
+    color: "#E44548",
+  },
+  orderText: {
+    fontSize: "14px",
+    margin: "5px 0",
+    color: "#000",
+  },
+  generalText: {
+    fontSize: "14px",
+    margin: "5px 0",
+    color: "#000",
+  },
   adsContainer: {
     flex: 4,
     backgroundColor: "#fff",
@@ -118,6 +156,7 @@ const styles = {
     width: "100%",
     height: "auto",
     marginBottom: "10px",
+    backgroundColor: "#f9f9f9",
   },
 };
 

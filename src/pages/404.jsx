@@ -1,14 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import meshBackground from "../assets/brand/mesh-white-0_7.png";
+import meshBackgroundRed from "../assets/brand/mesh-red-1.png";
+
 function NotFound() {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>404</h1>
-      <p style={styles.message}>Oops! The page you're looking for does not exist.</p>
-      <Link to="/" style={styles.homeLink}>
-        Go Back to Home
-      </Link>
+    <div style={styles.container} className="glassmorphic">
+      <div style={{backgroundColor: "#fff", padding: "40px", borderRadius: "16px"}}>
+        <h1 style={styles.heading}>404</h1>
+        <p style={styles.message}>Oops! The page you're looking for does not exist.</p>
+        <Link to="/" style={styles.homeLink}>
+          Go Back to Home
+        </Link>
+      </div>
     </div>
   );
 }
@@ -20,10 +25,15 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
-    backgroundColor: "#f8f9fa",
+    height: "80vh",
+    // backgroundColor: "#fff",
+    backgroundImage: `url(${meshBackgroundRed})`,
+    backgroundClip: "padding-box",
+    backgroundSize: "cover", // Ensures the background image covers the entire container
+    backgroundPosition: "center", // Centers the background image
+    backgroundAttachment: "fixed", // Fixes the background image in place
     textAlign: "center",
-    padding: "20px",
+    padding: "0px",
   },
   heading: {
     fontSize: "72px",

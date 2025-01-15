@@ -12,37 +12,38 @@ import heroImage from "../assets/pexels/pexels-liliana-drew-9462650.jpg";
 import bubbliLogo from "../assets/bubbli-icon_white.svg";
 import savingsTreeIcon from "../assets/icons/icons8-growing-money-100-green.png";
 
-
 function Landing() {
   return (
     <div className="container mx-auto p-4" style={styles.container}>
       {/* Hero Section */}
-      <section style={styles.hero} className="shadow-lg">
-        {/* <div style={styles.heroGradient}> */}
-        <div style={styles.heroWrap} className="gap-y-4">
-          <img
-            src={bubbliLogo}
-            alt="Bubbli Cleaning Solutions"
-            style={styles.heroLogo}
-          />
-          <h1 style={styles.heroTitle}>
-            <span
-              className="comfortaa"
-              style={{ fontWeight: "bold", fontSize: "40px" }}
-            >
-              bubbli cleaning solutions
-            </span>
-          </h1>
-          <p style={styles.heroSubtitle}>Give your home a Bubbli Clean!</p>
-          <Link to="/clients/home" style={styles.heroButton}>
-            Shop Now
-          </Link>
+      <section style={styles.hero} className="rounded-lg shadow-lg">
+        <div className="glassmorphic-red">
+          <div style={styles.heroWrap} className="gap-y-4">
+            <img
+              src={bubbliLogo}
+              alt="Bubbli Cleaning Solutions"
+              style={styles.heroLogo}
+            />
+            <h1 style={styles.heroTitle}>
+              <span
+                className="comfortaa"
+                style={{ fontWeight: "bold", fontSize: "40px" }}
+              >
+                cleaning solutions
+              </span>
+            </h1>
+            <p style={styles.heroSubtitle}>
+              Give your home a <b>Bubbli Clean</b>!
+            </p>
+            <Link to="/clients/home" style={styles.heroButton}>
+              Shop Now
+            </Link>
+          </div>
         </div>
-        {/* </div> */}
       </section>
 
       {/* Value Savings Section */}
-      <section>
+      <section className="glassmorphic" style={styles.valueSavings}>
         <div className="flex flex-col items-center justify-center gap-y-4">
           <img
             src={savingsTreeIcon}
@@ -50,16 +51,18 @@ function Landing() {
             style={{ height: "100px" }}
           />
           <h2 style={styles.valuePacksSectionTitle}>
-            Get a Savings Pack for more Clean, for Longer!
+            <b>Get a Savings Pack for more Clean, for Longer!</b>
           </h2>
         </div>
         <ValuePacks />
       </section>
 
       {/* Call to Action Section */}
-      <section style={styles.cta} className="shadow-lg">
-        <div style={styles.ctaWrap}>
-          <h2 style={styles.ctaTitle}>Explore Our Full Catalogue</h2>
+      <section style={styles.cta} className="rounded-lg shadow-lg">
+        <div style={styles.ctaWrap} className="glassmorphic-red">
+          <h2 className="comfortaa" style={styles.ctaTitle}>
+            Explore Our Full Catalogue
+          </h2>
           <p style={styles.ctaSubtitle}>
             Discover the perfect cleaning solutions for every need.
           </p>
@@ -89,6 +92,7 @@ const styles = {
     // backgroundAttachment: "fixed", // Fixes the background image in place
     color: "#fff",
     borderRadius: "16px",
+    overflow: "hidden",
     marginBottom: "40px",
     justifyContent: "center",
     // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -115,13 +119,13 @@ const styles = {
     borderRadius: "8px",
   },
   heroLogo: {
-    width: "250px",
-    height: "250px",
+    width: "300px",
+    height: "300px",
     objectFit: "cover",
     // borderRadius: "50%",
   },
   heroTitle: {
-    fontSize: "36px",
+    fontSize: "32px",
     marginBottom: "10px",
     color: "#fff",
   },
@@ -141,6 +145,8 @@ const styles = {
   },
   valueSavings: {
     marginBottom: "40px",
+    padding: "20px 20px 1px 20px",
+    borderRadius: "16px",
   },
   sectionTitle: {
     fontSize: "24px",
@@ -187,6 +193,7 @@ const styles = {
     textAlign: "center",
     backgroundColor: "#E44548",
     borderRadius: "16px",
+    overflow: "hidden",
     // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   },
   ctaWrap: {
@@ -200,7 +207,8 @@ const styles = {
     backgroundAttachment: "fixed", // Fixes the background image in place
   },
   ctaTitle: {
-    fontSize: "24px",
+    fontSize: "32px",
+    fontWeight: "bold",
     marginBottom: "10px",
     color: "#fff",
   },

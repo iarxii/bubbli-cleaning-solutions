@@ -17,7 +17,7 @@ function Footer() {
       <div style={styles.footerWrap}>
         <div className="container mx-auto" style={styles.flexGrid}>
           {/* About Section */}
-          <div style={styles.section} className="flex flex-col justify-center">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
             <h3 style={styles.sectionTitle}>About Us</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>
@@ -28,7 +28,7 @@ function Footer() {
           </div>
 
           {/* Quick Links Section */}
-          <div style={styles.section} className="flex flex-col justify-center">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
             <h3 style={styles.sectionTitle}>Quick Links</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <ul style={styles.list}>
@@ -56,7 +56,7 @@ function Footer() {
           </div>
 
           {/* Connect with Us Section */}
-          <div style={styles.section} className="flex flex-col justify-center">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
             <h3 style={styles.sectionTitle}>Connect with Us</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>Email: support@bubbli.co.za</p>
@@ -98,10 +98,6 @@ function Footer() {
             style={styles.copyrightText}>
             &copy; 2025 Bubbli Cleaning Solutions. All rights reserved.
           </p>
-          {/* Chat window */}
-          <div style={styles.chatWindow}>
-            <ChatWindow />
-          </div>
         </div>
       </div>
 
@@ -109,6 +105,7 @@ function Footer() {
       <div style={styles.chatWindow}>
         <ChatWindow />
       </div>
+
     </footer>
   );
 }
@@ -119,7 +116,8 @@ const styles = {
     color: "#fff",
     // padding: "20px",
     textAlign: "center",
-    marginTop: "40px",
+    // marginTop: "40px",
+    borderTop: "5px solid #f7f7f7",
   },
   footerWrap: {
     // display: "flex",
@@ -186,7 +184,7 @@ const styles = {
     padding: "20px",
     // marginTop: "20px",
     fontSize: "12px",
-    backgroundColor: "#fff",
+    backgroundColor: "#f7f7f7",
   },
   copyrightText: {
     color: "#E44548",
