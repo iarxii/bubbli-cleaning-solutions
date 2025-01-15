@@ -68,10 +68,10 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.8; /* Reduce opacity to 80% */
+  opacity: 0.3; /* Reduce opacity to 30% */
   pointer-events: none; /* Ensure the image does not interfere with other elements */
   object-fit: cover; /* Cover the entire container */
-  object-position: top; /* Center the image */
+  object-position: center; /* Center the image */
   
 }
 
