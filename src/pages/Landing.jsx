@@ -24,14 +24,14 @@ function Landing() {
               alt="Bubbli Cleaning Solutions"
               style={styles.heroLogo}
             />
-            <h1 style={styles.heroTitle}>
+            {/* <h1 style={styles.heroTitle}>
               <span
                 className="comfortaa"
                 style={{ fontWeight: "bold", fontSize: "40px" }}
               >
                 cleaning solutions
               </span>
-            </h1>
+            </h1> */}
             <p style={styles.heroSubtitle}>
               Give your home a <b>Bubbli Clean</b>!
             </p>
@@ -43,12 +43,13 @@ function Landing() {
       </section>
 
       {/* Value Savings Section */}
-      <section className="glassmorphic" style={styles.valueSavings}>
+      <section className="glassmorphic bg-white rounded-lg shadow-lg" style={styles.valueSavings}>
         <div className="flex flex-col items-center justify-center gap-y-4">
           <img
             src={savingsTreeIcon}
             alt="savings tree"
-            style={{ height: "100px" }}
+            style={{ height: "200px", borderRadius: "50%", backgroundColor: "#fff", padding: "20px" }} 
+            className="shadow-md"
           />
           <h2 style={styles.valuePacksSectionTitle}>
             <b>Get a Savings Pack for more Clean, for Longer!</b>
@@ -66,7 +67,7 @@ function Landing() {
           <p style={styles.ctaSubtitle}>
             Discover the perfect cleaning solutions for every need.
           </p>
-          <Link to="/clients/home" style={styles.ctaButton}>
+          <Link to="/clients/home#anchor-catalogue" style={styles.ctaButton}>
             View Catalogue
           </Link>
         </div>

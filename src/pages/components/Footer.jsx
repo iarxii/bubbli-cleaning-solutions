@@ -17,7 +17,7 @@ function Footer() {
       <div style={styles.footerWrap}>
         <div className="container mx-auto" style={styles.flexGrid}>
           {/* About Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
             <h3 style={styles.sectionTitle}>About Us</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>
@@ -28,7 +28,7 @@ function Footer() {
           </div>
 
           {/* Quick Links Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
             <h3 style={styles.sectionTitle}>Quick Links</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <ul style={styles.list}>
@@ -56,7 +56,7 @@ function Footer() {
           </div>
 
           {/* Connect with Us Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-red">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
             <h3 style={styles.sectionTitle}>Connect with Us</h3>
             <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>Email: support@bubbli.co.za</p>

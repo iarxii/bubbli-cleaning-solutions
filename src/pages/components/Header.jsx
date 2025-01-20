@@ -143,7 +143,7 @@ function Header() {
                 <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 focus:outline-none shadow-md"
                   style={styles.shopDropButton}>
                     <FontAwesomeIcon icon={faStore} />
-                    <span>Store</span>
+                    <span>Bubbli Store</span>
                   <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
                 </PopoverButton>
 

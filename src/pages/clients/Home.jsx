@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStore } from "@fortawesome/free-solid-svg-icons";
 
 // import components
 import ValuePacks from "../components/ValuePacks";
@@ -78,23 +78,29 @@ function Home() {
         </section>
 
         <section className="container mx-auto p-4">
-          <div className="grid grid-cols-12 gap-4">
+          <div className="grid grid-cols-12 gap-4 items-start">
             
             {/* Value Savings Section */}
             <div className="col-span-12 rounded-lg bg-white p-6 pb-0 lg:col-span-8 shadow-md">
-              <div className="flex gap-x-1 items-center">
-                <img src={savingsTreeIcon} 
-                  alt="savings tree" 
-                  style={{height: "50px", filter: "invert(0)"}} />
-                <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
+              <div className="grid grid-cols-12 gap-4 items-center">
+                <div className="col-span-2 justify-center">
+                  <img src={savingsTreeIcon} 
+                    alt="savings tree" 
+                    style={{height: "auto", width: "100%", filter: "invert(0)"}} />
+                </div>
+                <div className="col-span-10 gap-y-4">
+                  <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
+                  <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
+                </div>
               </div>
+              
             
-              <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
+              
               <ValuePacks />
             </div>
 
             {/* Community Rewards Subscription */}
-            <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4" 
+            <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4 self-start" 
               style={styles.subscribeCTA}>
                 <div style={styles.subscribeCTAWrap}>
                   <h1 className="mb-2 text-xl font-bold text-white">Subscribe Today!</h1>
@@ -115,25 +121,29 @@ function Home() {
         </section>
 
         <section className="container mx-auto">
-          {/* Search and Filter Section */}
-          <section style={styles.filterSection} className="flex items-center mb-0">
-            <FontAwesomeIcon icon={faSearch} className="text-[#E44548] pr-2 h-6" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-              style={styles.searchInput}
-            />
-            <select
-              value={filter}
-              onChange={handleFilterChange}
-              style={styles.dropdown}
-            >
-              <option value="All">All Categories</option>
-              <option value="Cleaning">Cleaning</option>
-              <option value="Sanitizing">Sanitizing</option>
-            </select>
+          <span id="anchor-catalogue"></span>
+          <section style={styles.filterContainer} className="">
+            <h1 className="pb-4 pt-6 text-[#E44548] bg-white text-center"><FontAwesomeIcon icon={faStore} /> <span className="comfortaaz">Bubbli Store</span></h1>
+            {/* Search and Filter Section */}
+            <div style={styles.filterSection} className="flex items-center mb-0">
+              <FontAwesomeIcon icon={faSearch} className="text-[#E44548] pr-2 h-6" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                style={styles.searchInput}
+              />
+              <select
+                value={filter}
+                onChange={handleFilterChange}
+                style={styles.dropdown}
+              >
+                <option value="All">All Categories</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="Sanitizing">Sanitizing</option>
+              </select>
+            </div>
           </section>
 
           {/* Product Catalogue */}
@@ -203,10 +213,12 @@ const styles = {
     // backgroundColor: "#F7B6B6",
     marginBottom: "20px",
   },
-  filterSection: {
+  filterContainer: {
     position: "sticky",
     top: "0",
     zIndex: "10",
+  },
+  filterSection: {
     backgroundColor: "#f7f7f7",
     display: "flex",
     justifyContent: "space-between",
