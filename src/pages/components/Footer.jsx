@@ -17,9 +17,9 @@ function Footer() {
       <div style={styles.footerWrap}>
         <div className="container mx-auto" style={styles.flexGrid}>
           {/* About Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#FB6F92] shadow-lg">
             <h3 style={styles.sectionTitle}>About Us</h3>
-            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#fff] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>
               At Bubbli Cleaning Solutions, we provide premium cleaning products
               to keep your home spotless and hygienic. Your satisfaction is our
@@ -28,9 +28,9 @@ function Footer() {
           </div>
 
           {/* Quick Links Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#FB6F92] shadow-lg">
             <h3 style={styles.sectionTitle}>Quick Links</h3>
-            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#fff] mx-auto my-2 rounded-xl"></div>
             <ul style={styles.list}>
               <li>
                 <Link to="/clients/home" style={styles.link}>
@@ -56,9 +56,9 @@ function Footer() {
           </div>
 
           {/* Connect with Us Section */}
-          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#E44548] shadow-lg">
+          <div style={styles.section} className="flex flex-col justify-center p-4 rounded-lg glassmorphic-redz bg-[#FB6F92] shadow-lg">
             <h3 style={styles.sectionTitle}>Connect with Us</h3>
-            <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
+            <div className="h-1 w-16 bg-[#fff] mx-auto my-2 rounded-xl"></div>
             <p style={styles.text}>Email: support@bubbli.co.za</p>
             <p style={styles.text}>Phone: 071 269 4232</p>
             <div style={styles.socialIcons}>
@@ -112,7 +112,7 @@ function Footer() {
 
 const styles = {
   footer: {
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     color: "#fff",
     // padding: "20px",
     textAlign: "center",
@@ -187,7 +187,7 @@ const styles = {
     backgroundColor: "#f7f7f7",
   },
   copyrightText: {
-    color: "#E44548",
+    color: "#FB6F92",
   },
   chatWindow: {
     position: "fixed",

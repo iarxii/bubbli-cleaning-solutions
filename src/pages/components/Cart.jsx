@@ -1,12 +1,18 @@
+import { faCashRegister } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import ReactDOM from "react-dom";
 
 function Cart({ isOpen, onClose, cartItems, onRemoveItem }) {
-  return (
-    <div style={{ ...styles.overlay, display: isOpen ? "block" : "none" }}>
+  if (!isOpen) return null;
+
+  return ReactDOM.createPortal(
+    <div style={styles.overlay}>
+      {/* { ...styles.overlay, display: isOpen ? "block" : "none" } */}
       <div style={styles.cartPanel}>
         {/* Cart Header */}
         <div style={styles.cartHeader}>
-          <h2>Your Cart</h2>
+          <h2 style={styles.cartTitle}>Your Cart</h2>
           <button onClick={onClose} style={styles.closeButton}>
             ✕
           </button>
@@ -14,7 +20,9 @@ function Cart({ isOpen, onClose, cartItems, onRemoveItem }) {
 
         {/* Cart Items */}
         <div style={styles.cartContent}>
-          {cartItems.length > 0 ? (
+          {cartItems.length === 0 ? (
+            <p style={styles.cartNoItemsText}>Your cart is empty</p>
+          ) : ( 
             cartItems.map((item, index) => (
               <div key={index} style={styles.cartItem}>
                 <img
@@ -35,19 +43,21 @@ function Cart({ isOpen, onClose, cartItems, onRemoveItem }) {
                 </button>
               </div>
             ))
-          ) : (
-            <p>Your cart is empty.</p>
           )}
         </div>
 
         {/* Cart Footer */}
         <div style={styles.cartFooter}>
-          <button style={styles.checkoutButton} onClick={() => alert("Checkout coming soon!")}>
-            Checkout
+          <button className="shadow-lg" style={styles.checkoutButton} onClick={() => alert("Checkout coming soon!")}>
+            <div className="flex gap-x-2 items-center">
+              <FontAwesomeIcon icon={faCashRegister} />
+              <span>Checkout</span>
+            </div>
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body // Render the cart component at the root level
   );
 }
 
@@ -80,11 +90,17 @@ const styles = {
     alignItems: "center",
     padding: "10px 20px",
     borderBottom: "1px solid #ddd",
+    backgroundColor: "#FB6F92",
+  },
+  cartTitle: {
+    margin: 0,
+    color: "#fff",
+    fontSize: "28px",
   },
   closeButton: {
     background: "none",
     border: "none",
-    fontSize: "18px",
+    fontSize: "24px",
     cursor: "pointer",
   },
   cartContent: {
@@ -95,6 +111,10 @@ const styles = {
     alignItems: "center",
     marginBottom: "15px",
   },
+  cartNoItemsText: {
+    textAlign: "center",
+    color: "#777",
+  },
   cartItemImage: {
     width: "60px",
     height: "60px",
@@ -103,6 +123,7 @@ const styles = {
   },
   cartItemDetails: {
     flex: 1,
+    color: "#333",
   },
   removeButton: {
     backgroundColor: "#ff4d4d",
@@ -116,10 +137,11 @@ const styles = {
     padding: "10px 20px",
     borderTop: "1px solid #ddd",
     textAlign: "right",
+    backgroundColor: "#FB6F92",
   },
   checkoutButton: {
-    backgroundColor: "#007BFF",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#FB6F92",
     border: "none",
     padding: "10px 20px",
     borderRadius: "5px",

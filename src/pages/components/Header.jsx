@@ -15,7 +15,7 @@ import meshBackgroundRed from "../../assets/brand/mesh-red-1.png";
 import rewardsGif from '../../assets/icons/icons8-reward.gif';
 
 // import components
-import Cart from "../clients/Cart";
+import Cart from "./Cart"
 
 // import custom css
 import "../custom.css";
@@ -129,7 +129,7 @@ function Header() {
               >
                 <span className="sr-only">Open main menu</span>
                 {/* <Bars3Icon aria-hidden="true" className="size-6 text-white icon-white" style={{ color: '#fff' }} /> */}
-                <FontAwesomeIcon icon={faBars} className="h-6 w-6 icon-white" style={{ color: '#E44548'}} />
+                <FontAwesomeIcon icon={faBars} className="h-6 w-6 icon-white" style={{ color: '#FB6F92'}} />
               </button>
             </div>
             <PopoverGroup className="hidden lg:flex lg:gap-x-4 items-center">
@@ -160,14 +160,14 @@ function Header() {
                         className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                       >
                         <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <FontAwesomeIcon icon={item.icon} aria-hidden="true" className="size-6 text-[#E44548] group-hover:text-[#1EBA15]" />
+                          <FontAwesomeIcon icon={item.icon} aria-hidden="true" className="size-6 text-[#FB6F92] group-hover:text-[#1EBA15]" />
                         </div>
                         <div className="flex-auto">
-                          <Link to={item.href} className="block font-semibold text-[#E44548] group-hover:text-[#1EBA15]">
+                          <Link to={item.href} className="block font-semibold text-[#FB6F92] group-hover:text-[#1EBA15]">
                             {item.name}
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className="mt-1 text-[#E44548] group-hover:text-[#1EBA15]">{item.description}</p>
+                          <p className="mt-1 text-[#FB6F92] group-hover:text-[#1EBA15]">{item.description}</p>
                         </div>
                       </div>
                     ))}
@@ -177,7 +177,7 @@ function Header() {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-[#E44548] hover:bg-gray-100"
+                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-[#FB6F92] hover:bg-gray-100"
                       >
                         <item.icon aria-hidden="true" className="size-5 flex-none text-[#1EBA15]" />
                         <span>{item.name}</span>
@@ -196,7 +196,7 @@ function Header() {
 
             <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4">
               {/* Customer Login */}
-              <Link to="#" className="text-sm/6 font-semibold flex items-center gap-x-2 shadow-md"
+              <Link to="/clients/login" className="text-sm/6 font-semibold flex items-center gap-x-2 shadow-md"
                 style={styles.loginButton}>
                   <FontAwesomeIcon icon={faUser} className="h-6 w-6 text-white icon-white" style={{ color: '#fff'}} />
                  <span>Log in</span>
@@ -243,7 +243,7 @@ function Header() {
                     className="-m-2.5 rounded-md p-2.5 text-gray-700 bg-white"
                   >
                     <span className="sr-only">Close menu</span>
-                    <FontAwesomeIcon icon={faClose} aria-hidden="true" className="size-6 text-[#E44548]" />
+                    <FontAwesomeIcon icon={faClose} aria-hidden="true" className="size-6 text-[#FB6F92]" />
                   </button>
                 </div>
                 <div className="mt-6 flow-root">
@@ -253,7 +253,7 @@ function Header() {
                         <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 shadow-lg" 
                           style={styles.mobileNavbarStoreButton}>
                           <div className="flex items-center gap-x-2.5">
-                            <FontAwesomeIcon icon={faStore} className="h-6 w-6 text-[#E44548] fill-current" aria-hidden="true" />
+                            <FontAwesomeIcon icon={faStore} className="h-6 w-6 text-[#FB6F92] fill-current" aria-hidden="true" />
                             Bubbli Store
                           </div>
                           <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
@@ -266,7 +266,7 @@ function Header() {
                               // href={item.href}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-white hover:bg-gray-50"
                             >
-                              <Link to={item.href} className="text-[#E44548]">
+                              <Link to={item.href} className="text-[#FB6F92]">
                                 {item.name}
                               </Link>
                             </DisclosureButton>
@@ -322,7 +322,8 @@ function Header() {
                     </div>
                     <div className="py-6">
                       <Link
-                        to="#"
+                        to="clients/login"
+                        onClick={() => setMobileMenuOpen(false)}
                         style={styles.loginButton}
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-gray-50 text-center shadow-lg"
                       >
@@ -356,7 +357,7 @@ const styles = {
     position: "sticky",
     top: "0",
     zIndex: "100",
-    // backgroundColor: "#E44548",
+    // backgroundColor: "#FB6F92",
     // backgroundColor: "#fff",
     // backgroundImage: "linear-gradient(180deg, #FFFFFF 0%, rgba(0,0,0,0) 100%)",
   },
@@ -371,7 +372,7 @@ const styles = {
     // justifyContent: "space-between",
     alignItems: "center",
     padding: "10px 20px",
-    backgroundImage: "linear-gradient(120deg, #E44548 30%, rgba(0,0,0,0) 90%)",
+    backgroundImage: "linear-gradient(120deg, #FB6F92 30%, rgba(0,0,0,0) 90%)",
     color: "#fff",
   },
   shopFeaturesSubMenu: {
@@ -380,7 +381,7 @@ const styles = {
   },
   mobileNavbar: {
     padding: "0px",
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     color: "#fff",
     zIndex: "1010",
   },
@@ -394,7 +395,7 @@ const styles = {
   },
   mobileNavbarStoreButton: {
     backgroundColor: "#fff",
-    color: "#E44548",
+    color: "#FB6F92",
     padding: "10px",
     borderRadius: "10px",
     outline: "none", 
@@ -451,11 +452,11 @@ const styles = {
   },
   profileName: {
     fontSize: "16px",
-    color: "#E44548",
+    color: "#FB6F92",
   },
   mobileMenuButton: {
     backgroundColor: "#fff",
-    color: "#E44548",
+    color: "#FB6F92",
   },
   mobileMenuText: {
     fontSize: "16px",
@@ -464,7 +465,7 @@ const styles = {
   loginButton: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     color: "#fff",
     padding: "10px 20px",
     borderRadius: "10px",
@@ -473,7 +474,7 @@ const styles = {
   cartButton: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     color: "#fff",
     padding: "10px 20px",
     borderRadius: "10px",
@@ -481,7 +482,7 @@ const styles = {
   },
   shopDropButton: {
     backgroundColor: "#fff",
-    color: "#E44548",
+    color: "#FB6F92",
     padding: "10px",
     borderRadius: "10px",
     outline: "none", 

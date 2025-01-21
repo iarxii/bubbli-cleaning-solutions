@@ -6,13 +6,18 @@ import { faSearch, faStore } from "@fortawesome/free-solid-svg-icons";
 // import components
 import ValuePacks from "../components/ValuePacks";
 import ErrorBoundary from "../components/utils/ErrorBoundary"; // debugging
+import Carousel from "../components/Carousel";
 
 // import media
 import placholder from "../../assets/placeholder-productimg.jpg";
-import savingsTreeIcon from "../../assets/icons/icons8-growing-money-100-green.png";
+import savingsTreeIconGreen from "../../assets/icons/icons8-growing-money-100-green.png";
+import savingsTreeIconWhite from "../../assets/icons/icons8-growing-money-100-white.png";
 import meshBackground from "../../assets/brand/mesh-white-0_7.png";
 import meshBackgroundRed from "../../assets/brand/mesh-red-1.png";
-import { width } from "@fortawesome/free-solid-svg-icons/fa0";
+import carouselImgPH1 from "../../assets/carousel/placeholder-1.jpeg";
+import carouselImgPH2 from "../../assets/carousel/placeholder-2.jpeg";
+import carouselImgPH3 from "../../assets/carousel/placeholder-3.jpeg";
+import carouselImgPH4 from "../../assets/carousel/placeholder-4.jpeg";
 
 function Home() {
   // Mock product data
@@ -66,55 +71,67 @@ function Home() {
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
+  // Carousel items
+  const carouselItems = [
+    { image: carouselImgPH1, alt: "Placeholder 1" },
+    { image: carouselImgPH2, alt: "Placeholder 2" },
+    { image: carouselImgPH3, alt: "Placeholder 3" },
+    { image: carouselImgPH4, alt: "Placeholder 4" },
+  ];
+
   return (
     <ErrorBoundary>
       <div>
         {/* Hero Section */}
         <section style={styles.hero} className="grid gap-y-4 shadow-md">
-          <h1 className="text-[#E44548]">Home Catalogue</h1>
+          <h1 className="text-[#FB6F92]">Home Catalogue</h1>
           <p className="text-[#000000]">
             Find all the amazing cleaning and sanitizing products you need in one place!
           </p>
         </section>
 
-        <section className="container mx-auto p-4">
-          <div className="grid grid-cols-12 gap-4 items-start">
-            
-            {/* Value Savings Section */}
-            <div className="col-span-12 rounded-lg bg-white p-6 pb-0 lg:col-span-8 shadow-md">
-              <div className="grid grid-cols-12 gap-4 items-center">
-                <div className="col-span-2 justify-center">
-                  <img src={savingsTreeIcon} 
-                    alt="savings tree" 
-                    style={{height: "auto", width: "100%", filter: "invert(0)"}} />
-                </div>
-                <div className="col-span-10 gap-y-4">
-                  <h1 className="mb-2 text-xl font-bold text-[#E44548]">Get a Value Pack to save on your home sanitation.</h1>
-                  <p className="text-[#000000]">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
-                </div>
-              </div>
-              
-            
-              
-              <ValuePacks />
-            </div>
+        <section className="container mx-auto mb-4">
+          <div className="grid grid-cols-12 gap-4 items-baselinez">
 
             {/* Community Rewards Subscription */}
             <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4 self-start" 
               style={styles.subscribeCTA}>
                 <div style={styles.subscribeCTAWrap}>
                   <h1 className="mb-2 text-xl font-bold text-white">Subscribe Today!</h1>
-                  <p className="mb-2 text-white">
+                  <p className="mb-2 text-white font-medium">
                     Get your cleaning supplies conveniently delivered to your doorstep
                     every month. No need to travel and join the long queues.
                   </p>
-                  <p className="text-white">
+                  <p className="text-white font-medium">
                     From as little as R150.00 p.m, get the Clean Home Pack delivered to you.
                   </p>
-                  <Link to="/clients/subscribe" className="block mt-4 text-center bg-white text-[#E44548] py-2 px-4 rounded-lg">
+                  <Link to="/clients/subscribe" className="block mt-4 text-center bg-white text-[#FB6F92] py-2 px-4 rounded-lg">
                     Subscribe Now
                   </Link>
+
+                  {/* Carousel Section */}
+                  <section className="container mx-auto pt-4">
+                    <Carousel items={carouselItems} />
+                  </section>
                 </div>
+            </div>
+            
+            {/* Value Savings Section */}
+            <div className="col-span-12 rounded-lg bg-white p-6z pb-0z lg:col-span-8 shadow-md overflow-hidden">
+              <div className="grid grid-cols-12" style={styles.gradientLeftRight}>
+                <div className="grid col-span-10 gap-y-2 glassmorphic-red p-4 items-center">
+                  <h1 className="mb-2 text-xl font-bold text-white">Get a Value Pack to save on your home sanitation.</h1>
+                  <p className="text-white font-medium">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
+                </div>
+                <div className="flex col-span-2 justify-center p-4 h-auto bg-[#FB6F92]">
+                  <img src={savingsTreeIconWhite} 
+                    alt="savings tree" 
+                    style={{height: "auto", width: "100px", height: "auto", filter: "invert(0)"}} />
+                </div>
+              </div>
+              <div className="px-6">
+                <ValuePacks />
+              </div>
             </div>
             
           </div>
@@ -123,10 +140,10 @@ function Home() {
         <section className="container mx-auto">
           <span id="anchor-catalogue"></span>
           <section style={styles.filterContainer} className="">
-            <h1 className="pb-4 pt-6 text-[#E44548] bg-white text-center"><FontAwesomeIcon icon={faStore} /> <span className="comfortaaz">Bubbli Store</span></h1>
+            <h1 className="pb-4 pt-6 text-[#FB6F92] bg-white text-center"><FontAwesomeIcon icon={faStore} /> <span className="comfortaaz">Bubbli Store</span></h1>
             {/* Search and Filter Section */}
             <div style={styles.filterSection} className="flex items-center mb-0">
-              <FontAwesomeIcon icon={faSearch} className="text-[#E44548] pr-2 h-6" />
+              <FontAwesomeIcon icon={faSearch} className="text-[#FB6F92] pr-2 h-6" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -148,8 +165,8 @@ function Home() {
 
           {/* Product Catalogue */}
           <section className="glassmorphic py-4">
-            <div className="h-2 w-12 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
-            <h2 className="text-[#E44548] text-center">Product Catalogue</h2>
+            <div className="h-2 w-12 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
+            <h2 className="text-[#FB6F92] text-center">Product Catalogue</h2>
             <hr className="mt-4" />
             <div style={styles.grid}>
               {paginatedProducts.map((product) => (
@@ -162,7 +179,7 @@ function Home() {
                     />
                   </Link>
                   <h3 style={styles.productCardTitle}>{product.name}</h3>
-                  <p style={styles.productCardPrice}>{product.currencySymbol} {product.price}</p>
+                  <p style={styles.productCardPrice} className="pb-2">{product.currencySymbol} {product.price}</p>
                   <button
                     style={styles.addToCartButton}
                     onClick={() => handleAddToCart(product)}
@@ -183,7 +200,7 @@ function Home() {
                   style={{
                     ...styles.pageButton,
                     backgroundColor:
-                      currentPage === index + 1 ? "#E44548" : "#f0f0f0",
+                      currentPage === index + 1 ? "#FB6F92" : "#f0f0f0",
                     color: currentPage === index + 1 ? "#fff" : "#000",
                   }}
                 >
@@ -259,15 +276,15 @@ const styles = {
     marginBottom: "10px",
   },
   productCardTitle: {
-color: "#E44548",
-fontSize: "24px",
+  color: "#FB6F92",
+  fontSize: "24px",
+    },
+  productCardPrice: {
+  color: "#000",
+  fontSize: "18px",
   },
-productCardPrice: {
- color: "#000",
- fontSize: "18px",
-},
   addToCartButton: {
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     color: "#fff",
     border: "none",
     padding: "10px",
@@ -289,7 +306,7 @@ productCardPrice: {
     fontSize: "20px",
   },
   subscribeCTA: {
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     height: "100%",
     width: "100%",
   },
@@ -301,6 +318,9 @@ productCardPrice: {
     backgroundPosition: "center", // Centers the background image
     height: "100%",
     width: "100%",
+  },
+  gradientLeftRight: {
+    backgroundImage: "linear-gradient(120deg, #FB6F92 30%, rgba(0,0,0,0) 90%)",
   },
 };
 

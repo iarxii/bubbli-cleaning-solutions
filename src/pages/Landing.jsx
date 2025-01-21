@@ -10,11 +10,26 @@ import "./custom.css";
 import meshBackground from "../assets/brand/mesh-white-0_7.png";
 import heroImage from "../assets/pexels/pexels-liliana-drew-9462650.jpg";
 import bubbliLogo from "../assets/bubbli-icon_white.svg";
-import savingsTreeIcon from "../assets/icons/icons8-growing-money-100-green.png";
+import savingsTreeIconWhite from "../assets/icons/icons8-growing-money-100-white.png";
+import savingsTreeIconGreen from "../assets/icons/icons8-growing-money-100-green.png";
+import flavourProductImgPH1 from "../assets/carousel/placeholder-1.jpeg";
+import flavourProductImgPH2 from "../assets/carousel/placeholder-2.jpeg";
+import flavourProductImgPH3 from "../assets/carousel/placeholder-3.jpeg";
+import flavourProductImgPH4 from "../assets/carousel/placeholder-4.jpeg";
 
 function Landing() {
+  const bubbliFlavours = [
+    { image: flavourProductImgPH1, alt: "Flavour Placeholder 1" },
+    { image: flavourProductImgPH2, alt: "Flavour Placeholder 2" },
+    { image: flavourProductImgPH3, alt: "Flavour Placeholder 3" },
+    { image: flavourProductImgPH4, alt: "Flavour Placeholder 4" },
+  ];
+
   return (
-    <div className="container mx-auto p-4" style={styles.container}>
+    <div
+      className="glassmorphic container mx-auto p-4"
+      style={styles.container}
+    >
       {/* Hero Section */}
       <section style={styles.hero} className="rounded-lg shadow-lg">
         <div className="glassmorphic-red">
@@ -35,7 +50,10 @@ function Landing() {
             <p style={styles.heroSubtitle}>
               Give your home a <b>Bubbli Clean</b>!
             </p>
-            <Link to="/clients/home" style={styles.heroButton}>
+            <Link
+              to="/clients/home/#anchor-catalogue"
+              style={styles.heroButton}
+            >
               Shop Now
             </Link>
           </div>
@@ -43,12 +61,20 @@ function Landing() {
       </section>
 
       {/* Value Savings Section */}
-      <section className="glassmorphic bg-white rounded-lg shadow-lg" style={styles.valueSavings}>
+      <section
+        className="bg-whitez shadow-lgz rounded-lg"
+        style={styles.valueSavings}
+      >
         <div className="flex flex-col items-center justify-center gap-y-4">
           <img
-            src={savingsTreeIcon}
+            src={savingsTreeIconWhite}
             alt="savings tree"
-            style={{ height: "200px", borderRadius: "50%", backgroundColor: "#fff", padding: "20px" }} 
+            style={{
+              height: "200px",
+              borderRadius: "50%",
+              backgroundColor: "#FB6F92",
+              padding: "30px",
+            }}
             className="shadow-md"
           />
           <h2 style={styles.valuePacksSectionTitle}>
@@ -61,15 +87,31 @@ function Landing() {
       {/* Call to Action Section */}
       <section style={styles.cta} className="rounded-lg shadow-lg">
         <div style={styles.ctaWrap} className="glassmorphic-red">
+          {/* bubbli flavour cards */}
+          <div className="flex flex-col sm:flex-row sm:flex-nowrap gap-2 pb-4">
+            {bubbliFlavours.map((flavour, index) => (
+              <div key={index} className="w-full sm:w-1/4 p-2">
+                <img
+                  className="h-auto w-full"
+                  src={flavour.image}
+                  alt={flavour.alt}
+                  style={styles.flavourImage}
+                />
+              </div>
+            ))}
+          </div>
+
           <h2 className="comfortaa" style={styles.ctaTitle}>
-            Explore Our Full Catalogue
+            Explore Our Flavours of Clean
           </h2>
           <p style={styles.ctaSubtitle}>
-            Discover the perfect cleaning solutions for every need.
+            Discover the perfect cleaning solutions for every need with the
+            Bubbli Flavours range.
           </p>
-          <Link to="/clients/home#anchor-catalogue" style={styles.ctaButton}>
-            View Catalogue
+          <Link to="/clients/bubbli/flavours" style={styles.ctaButton}>
+            Browse Bubbli Flavours
           </Link>
+
         </div>
       </section>
     </div>
@@ -84,7 +126,7 @@ const styles = {
   hero: {
     textAlign: "center",
     // padding: "50px 20px",
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     // backgroundImage:"#F7B6B6",
     // backgroundImage: `url(${heroImage})`,
     // backgroundClip: "padding-box",
@@ -139,7 +181,7 @@ const styles = {
     padding: "10px 20px",
     fontSize: "16px",
     backgroundColor: "#fff",
-    color: "#E44548",
+    color: "#FB6F92",
     textDecoration: "none",
     borderRadius: "5px",
     fontWeight: "bold",
@@ -158,7 +200,7 @@ const styles = {
     fontSize: "24px",
     marginBottom: "20px",
     textAlign: "center",
-    color: "#E44548",
+    color: "#FB6F92",
   },
   scrollContainer: {
     display: "flex",
@@ -187,12 +229,12 @@ const styles = {
   },
   cardPrice: {
     fontSize: "14px",
-    color: "#E44548",
+    color: "#FB6F92",
     fontWeight: "bold",
   },
   cta: {
     textAlign: "center",
-    backgroundColor: "#E44548",
+    backgroundColor: "#FB6F92",
     borderRadius: "16px",
     overflow: "hidden",
     // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -222,10 +264,16 @@ const styles = {
     padding: "10px 20px",
     fontSize: "16px",
     backgroundColor: "#fff",
-    color: "#E44548",
+    color: "#FB6F92",
     textDecoration: "none",
     borderRadius: "5px",
     fontWeight: "bold",
+  },
+  flavourImage: {
+    borderRadius: "16px",
+    width: "100%",
+    height: "auto",
+    objectFit: "cover",
   },
 };
 

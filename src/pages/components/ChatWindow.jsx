@@ -12,7 +12,7 @@ function ChatWindow() {
   return (
     <div className={`chat-window ${isOpen ? "open" : "collapsed"}`}>
       <div className="chat-header" onClick={toggleChatWindow}>
-        <h2><FontAwesomeIcon icon={faHeadset} />  Need assistance?</h2>
+        <h2><FontAwesomeIcon icon={faHeadset} />  Need Help?</h2>
       </div>
       {isOpen && (
         <div className="chat-content">
@@ -39,7 +39,7 @@ const styles = {
     fontSize: "24px",
     marginBottom: "20px",
     textAlign: "center",
-    color: "#E44548",
+    color: "#FB6F92",
   },
 };
 

@@ -1,5 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import font files */
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.woff2') format('woff2'),
+      url('./assets/fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.woff2') format('woff2'),
+      url('./assets/fonts/Poppins-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Poppins', sans-serif !important;
+
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,32 +36,13 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* custom */
+  --slight-grey: #f7f7f7;
   --headings-color: #000000;
   --text-color: #333333;
   --success-green: #1EBA15;
   --success-gold: #e49009;
-  --grey-color: #f7f7f7;
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Import font files */
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Regular.woff2') format('woff2'),
-       url('./assets/fonts/Poppins-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Bold.woff2') format('woff2'),
-       url('./assets/fonts/Poppins-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
+  --bubbli-red: #e44548;
+  --bubbli-pink: #FB6F92;
 }
 
 /* Set the default font */
@@ -70,7 +74,7 @@ body {
   /*border-radius: 16px;*/ /* Rounded corners */
   backdrop-filter: blur(10px); /* Blur effect */
   -webkit-backdrop-filter: blur(10px); /* Blur effect for Safari */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/ /* Optional: subtle shadow */
 }
 
 .bg-animation {

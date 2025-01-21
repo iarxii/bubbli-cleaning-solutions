@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStore } from "@fortawesome/free-solid-svg-icons";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
-function CustomerLogin() {
+function CustomerSignUp() {
   const navigate = useNavigate();
-
-  // Hardcoded credentials
-  const hardcodedCredentials = {
-    username: "testuser",
-    password: "password123",
-  };
 
   // State to manage form inputs and error message
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -43,11 +33,9 @@ function CustomerLogin() {
   return (
     <section className="glassmorphic h-full py-6">
       <div style={styles.container}>
-        <h1 className="mt-4" style={styles.inputLabel}>
-          Welcome Back.
+        <h1 className="my-4" style={styles.inputLabel}>
+          Customer Login
         </h1>
-        <p style={styles.inputLabel} className="font-medium">Bubbli Customer Login</p>
-        <hr className="mb-4 mt-6" />
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.inputGroup}>
             <label htmlFor="username" style={styles.inputLabel}>
@@ -80,32 +68,17 @@ function CustomerLogin() {
             />
           </div>
           {error && <p style={styles.error}>{error}</p>}
-          <button type="submit" className="shadow-md" style={styles.button}>
+          <button type="submit" style={styles.button}>
             Login
           </button>
-
-          <div className="h-1 w-16 bg-[#1EBA15] mx-auto my-2 rounded-xl"></div>
-
-          <p className="text-center text-[#777777]">Or login with</p>
-          <div>
-            <button style={styles.googleLoginButton} className="shadow-md">
-              <div className="flex gap-2 items-center">
-                <FontAwesomeIcon icon={faGoogle} className="size-5" />
-                Google
-              </div>
-            </button>
-          </div>
-
         </form>
 
-        <hr className="mb-4 mt-6" />
-        <div className="flex justify-center gap-x-1 py-4 text-center">
+        <div className="flex justify-center gap-x-1 pt-4 text-center">
           <span className="text-[#777777]">Don't have an account?</span>
           <Link to="#" className="font-bold">
             Sign Up
           </Link>
         </div>
-
       </div>
     </section>
   );
@@ -149,15 +122,10 @@ const styles = {
     borderRadius: "8px",
     cursor: "pointer",
   },
-  googleLoginButton: {
-    backgroundColor: "#fff",
-    color: "#777",
-    border: "1px solid #ccc",
-  },
   error: {
     color: "red",
     fontWeight: "bold",
   },
 };
 
-export default CustomerLogin;
+export default CustomerSignUp;

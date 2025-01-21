@@ -36,7 +36,7 @@ function Orders() {
     <div>
       {/* Hero Section */}
       <section style={styles.hero} className="grid gap-y-4 shadow-md">
-        <h1 className="text-[#E44548]">Purchase Orders</h1>
+        <h1 className="text-[#FB6F92]">Purchase Orders</h1>
         <p className="text-[#000000]">
           View your past orders and track the status of your current orders
         </p>
@@ -45,7 +45,7 @@ function Orders() {
       <div style={styles.container}>
         {/* Orders List (8 columns) */}
         <div style={styles.ordersContainer}>
-          <h3 className="text-[#E44548] mb-4">Your Orders ({orders.length})</h3>
+          <h3 className="text-[#FB6F92] mb-4">Your Orders ({orders.length})</h3>
           <hr className="text-black h-4" />
           {orders.length > 0 ? (
             orders.map((order) => (
@@ -70,7 +70,7 @@ function Orders() {
 
         {/* Ads Section (4 columns) */}
         <div style={styles.adsContainer}>
-          <h3 className="text-[#E44548] mb-4">Special Offers</h3>
+          <h3 className="text-[#FB6F92] mb-4">Special Offers</h3>
           <hr className="text-black h-4" />
           <div style={styles.adCard}>
             <img
@@ -129,7 +129,7 @@ const styles = {
     fontSize: "18px",
     marginBottom: "10px",
     fontWeight: "bold",
-    color: "#E44548",
+    color: "#FB6F92",
   },
   orderText: {
     fontSize: "14px",

@@ -8,11 +8,17 @@ function NotFound() {
   return (
     <div style={styles.container} className="glassmorphic">
       <div style={{backgroundColor: "#fff", padding: "40px", borderRadius: "16px"}}>
-        <h1 style={styles.heading}>404</h1>
+        <h1 style={styles.heading}>🤔</h1>
         <p style={styles.message}>Oops! The page you're looking for does not exist.</p>
-        <Link to="/" style={styles.homeLink}>
-          Go Back to Home
-        </Link>
+        <div className="flex gap-4 justify-center">
+          <Link to="/" style={styles.homeLink}>
+            Previous Page
+          </Link>
+          <span className="text-zinc-700 cursor-none">|</span>
+          <Link to="/" style={styles.homeLink}>
+            Go Back to Home
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -27,11 +33,11 @@ const styles = {
     justifyContent: "center",
     height: "80vh",
     // backgroundColor: "#fff",
-    backgroundImage: `url(${meshBackgroundRed})`,
-    backgroundClip: "padding-box",
-    backgroundSize: "cover", // Ensures the background image covers the entire container
-    backgroundPosition: "center", // Centers the background image
-    backgroundAttachment: "fixed", // Fixes the background image in place
+    // backgroundImage: `url(${meshBackgroundRed})`,
+    // backgroundClip: "padding-box",
+    // backgroundSize: "cover", // Ensures the background image covers the entire container
+    // backgroundPosition: "center", // Centers the background image
+    // backgroundAttachment: "fixed", // Fixes the background image in place
     textAlign: "center",
     padding: "0px",
   },

@@ -10,6 +10,7 @@ import ProductPage from "./pages/clients/Products"
 import ClientOrders from "./pages/clients/Orders"
 import UserProfile from "./pages/clients/UserProfile"
 import UserSubscribe from "./pages/clients/Subscribe";
+import Flavours from './pages/clients/BubbliFlavours'
 import NotFound from "./pages/404";
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/clients/orders" element={<ClientOrders />} />
           <Route path="/clients/profile" element={<UserProfile />} />
           <Route path="/clients/subscribe" element={<UserSubscribe />} />
+          <Route path="/clients/bubbli/flavours" element={<Flavours />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
