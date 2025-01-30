@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStore } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStore, faChevronLeft, faChevronRight, faGifts } from "@fortawesome/free-solid-svg-icons";
 
 // import components
 import ValuePacks from "../components/ValuePacks";
@@ -39,8 +39,8 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(12); // default items per page 12
   const [cart, setCart] = useState([]);
-  const itemsPerPage = 12;
 
   // Filtered and paginated products
   const filteredProducts = products.filter(
@@ -71,6 +71,23 @@ function Home() {
 
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to the first page when items per page changes
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   // Carousel items
   const carouselItems = [
     { image: carouselImgPH1, alt: "Placeholder 1" },
@@ -97,7 +114,7 @@ function Home() {
             <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4 self-start" 
               style={styles.subscribeCTA}>
                 <div style={styles.subscribeCTAWrap}>
-                  <h1 className="mb-2 text-xl font-bold text-white">Subscribe Today!</h1>
+                  <h1 className="mb-2 text-xl font-bold text-white flex gap-x-2 items-center"><FontAwesomeIcon icon={faGifts} className="size-10" /> Subscribe Today!</h1>
                   <p className="mb-2 text-white font-medium">
                     Get your cleaning supplies conveniently delivered to your doorstep
                     every month. No need to travel and join the long queues.
@@ -123,10 +140,10 @@ function Home() {
                   <h1 className="mb-2 text-xl font-bold text-white">Get a Value Pack to save on your home sanitation.</h1>
                   <p className="text-white font-medium">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
                 </div>
-                <div className="flex col-span-2 justify-center p-4 h-auto bg-[#FB6F92]">
+                <div className="flex col-span-2 justify-center items-center p-4 h-auto bg-[#FB6F92]">
                   <img src={savingsTreeIconWhite} 
                     alt="savings tree" 
-                    style={{height: "auto", width: "100px", height: "auto", filter: "invert(0)"}} />
+                    style={{height: "auto", width: "100%", filter: "invert(0)"}} />
                 </div>
               </div>
               <div className="px-6">
@@ -142,7 +159,7 @@ function Home() {
           <section style={styles.filterContainer} className="">
             <h1 className="pb-4 pt-6 text-[#FB6F92] bg-white text-center"><FontAwesomeIcon icon={faStore} /> <span className="comfortaaz">Bubbli Store</span></h1>
             {/* Search and Filter Section */}
-            <div style={styles.filterSection} className="flex items-center mb-0">
+            <div style={styles.filterSection} className="flex items-center mb-0 overflow-x-auto">
               <FontAwesomeIcon icon={faSearch} className="text-[#FB6F92] pr-2 h-6" />
               <input
                 type="text"
@@ -159,6 +176,17 @@ function Home() {
                 <option value="All">All Categories</option>
                 <option value="Cleaning">Cleaning</option>
                 <option value="Sanitizing">Sanitizing</option>
+              </select>
+              <select
+                value={itemsPerPage}
+                onChange={handleItemsPerPageChange}
+                style={styles.dropdown}
+              >
+                <option value={12}>12</option>
+                <option value={24}>24</option>
+                <option value={36}>36</option>
+                <option value={48}>48</option>
+                <option value={60}>60</option>
               </select>
             </div>
           </section>
@@ -191,7 +219,7 @@ function Home() {
             </div>
             
             {/* Pagination */}
-            <div style={styles.pagination} className="mb-6">
+            {/* <div style={styles.pagination} className="mb-6">
               {Array.from({ length: totalPages }, (_, index) => (
                 <button
                   key={index}
@@ -207,11 +235,64 @@ function Home() {
                   {index + 1}
                 </button>
               ))}
+            </div> */}
+            <div className="flex justify-center">
+              <div className="h-1 w-16 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
             </div>
+            <div className="flex items-center justify-center gap-2 p-4">
+              {/* number of items to display */}
+              <span className="text-black">Items per page:</span>
+              <select
+                value={itemsPerPage}
+                onChange={handleItemsPerPageChange}
+                style={styles.dropdown}
+              >
+                <option value={12}>12</option>
+                <option value={24}>24</option>
+                <option value={36}>36</option>
+                <option value={48}>48</option>
+                <option value={60}>60</option>
+              </select>
+            </div>
+            <div className="flex justify-center">
+              <div className="h-1 w-16 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
+            </div>
+<           div style={styles.pagination} className="mb-6 flex items-center justify-center gap-2">
+              <button
+                className="shadow-md"
+                onClick={handlePrevPage}
+                style={styles.transpButton}
+                disabled={currentPage === 1}
+              >
+                <FontAwesomeIcon icon={faChevronLeft} className="text-[#FB6F92]"  />
+              </button>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className="shadow-md"
+                  onClick={() => handlePageChange(index + 1)}
+                  style={{
+                    ...styles.pageButton,
+                    backgroundColor:
+                      currentPage === index + 1 ? "#FB6F92" : "#f0f0f0",
+                    color: currentPage === index + 1 ? "#fff" : "#000",
+                  }}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                className="shadow-md"
+                onClick={handleNextPage}
+                style={styles.transpButton}
+                disabled={currentPage === totalPages}
+              >
+                <FontAwesomeIcon icon={faChevronRight} className="text-[#FB6F92]" />
+              </button>
+            </div>
+
+
           </section>
-
-          
-
         </section>
       </div>
     </ErrorBoundary>
@@ -251,6 +332,7 @@ const styles = {
     color: "#000",
   },
   dropdown: {
+    marginRight: "10px",
     padding: "10px",
     fontSize: "16px",
     backgroundColor: "#d1d1d1",
@@ -304,6 +386,16 @@ const styles = {
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "20px",
+  },
+  transpButton: {
+    // border: "1px solid #FB6F92",
+    height: "72px",
+    width: "72px",
+    padding: "20px",
+    borderRadius: "50%",
+    cursor: "pointer",
+    fontSize: "20px",
+    backgroundColor: "transparent",
   },
   subscribeCTA: {
     backgroundColor: "#FB6F92",

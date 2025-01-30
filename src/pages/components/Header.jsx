@@ -1,9 +1,26 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faClipboardList, faUser, faBars, faClose, faBoxOpen, faShareAlt, faStore, faGifts, faInfoCircle, faHandHoldingDollar, faQuestionCircle, faScroll } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext"; // Import AuthContext for User Authentication State Management
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBook,
+  faClipboardList,
+  faUser,
+  faBars,
+  faClose,
+  faBoxOpen,
+  faShareAlt,
+  faStore,
+  faGifts,
+  faUserCircle,
+  faInfoCircle,
+  faHandHoldingDollar,
+  faQuestionCircle,
+  faScroll,
+  faUserPen,
+} from "@fortawesome/free-solid-svg-icons";
 
 // import media
 import logo from "../../assets/bubbli-icon_white.svg";
@@ -12,10 +29,10 @@ import meshBackground from "../../assets/brand/mesh-white-0_7.png";
 import meshBackgroundRed from "../../assets/brand/mesh-red-1.png";
 
 // import icons
-import rewardsGif from '../../assets/icons/icons8-reward.gif';
+import rewardsGif from "../../assets/icons/icons8-reward.gif";
 
 // import components
-import Cart from "./Cart"
+import Cart from "./Cart";
 
 // import custom css
 import "../custom.css";
@@ -31,42 +48,62 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/react'
+} from "@headlessui/react";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-  UserIcon,
-  ShoppingCartIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+  ChevronDownIcon,
+  PhoneIcon,
+  PlayCircleIcon,
+} from "@heroicons/react/20/solid";
 
 const shopLinks = [
-  { name: 'Home Catalogue', description: 'View our product catalogue', href: 'clients/home', icon: faBook },
-  { name: 'Orders', description: 'Track your orders', href: 'clients/orders', icon: faClipboardList },
-  { name: 'Profile', description: 'Manage your profile', href: 'clients/profile', icon: faUser },
-  { name: 'Subscriptions', description: 'Manage your subscriptions', href: 'clients/subscriber', icon: faBoxOpen },
-  { name: 'Social media', description: 'Follow us on social media', href: 'https://linktr.ee/', icon: faShareAlt },
-]
+  {
+    name: "Home Catalogue",
+    description: "View our product catalogue",
+    href: "clients/home",
+    icon: faBook,
+  },
+  {
+    name: "Orders",
+    description: "Track your orders",
+    href: "clients/orders",
+    icon: faClipboardList,
+  },
+  {
+    name: "Profile",
+    description: "Manage your profile",
+    href: "clients/profile",
+    icon: faUser,
+  },
+  {
+    name: "Subscriptions",
+    description: "Manage your subscriptions",
+    href: "clients/subscriber",
+    icon: faBoxOpen,
+  },
+  {
+    name: "Social media",
+    description: "Follow us on social media",
+    href: "https://linktr.ee/",
+    icon: faShareAlt,
+  },
+];
 const callsToAction = [
-  { name: 'bubbli products demo', href: 'https://youtube.com/', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: 'customercare/support/', icon: PhoneIcon },
-]
+  {
+    name: "bubbli products demo",
+    href: "https://youtube.com/",
+    icon: PlayCircleIcon,
+  },
+  { name: "Contact sales", href: "customercare/support/", icon: PhoneIcon },
+];
 
 function Header() {
-  // tailwind mobile menu toggle state
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  // const [user, setUser] = useState(null);
+  const { user, logout } = useContext(AuthContext); // Use AuthContext
+  const navigate = useNavigate();
 
-  // Example: Mocking user login state
-  const isLoggedIn = true; // Change to `false` to test behavior for non-logged-in users
-  const userProfile = {
-    name: "John Doe",
-    profileImage: "https://via.placeholder.com/40", // Replace with actual profile image URL
-  };
+  // tailwind mobile menu toggle state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -84,7 +121,6 @@ function Header() {
   // State to track scroll position and navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isNavbarHidden, setIsNavbarHidden] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -102,12 +138,25 @@ function Header() {
     };
   }, [lastScrollY]);
 
+  // handle logout
+  const handleLogout = () => {
+    setMobileMenuOpen(false);
+    logout();
+    navigate("/clients/login");
+  };
+
   return (
-    <header className={`bg-dark-900 text-white ${isNavbarHidden ? "translate-y-[-100%]" : "translate-y-0"} transition-transform duration-300`} 
-      style={styles.navbar}>
+    <header
+      className={`bg-dark-900 text-white ${isNavbarHidden ? "translate-y-[-100%]" : "translate-y-0"} transition-transform duration-300`}
+      style={styles.navbar}
+    >
       <div style={styles.navWrap}>
         <div style={styles.nav}>
-          <nav aria-label="Global" className="container mx-auto flex max-w-7xlz items-center justify-between p-6 lg:px-8">
+          <nav
+            aria-label="Global"
+            className="max-w-7xlz container mx-auto flex items-center justify-between p-6 lg:px-8"
+          >
+            {/* bubbli root-nav / logo */}
             <div className="flex lg:flex-1">
               <Link to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">bubbli cleaning solutions</span>
@@ -119,8 +168,9 @@ function Header() {
                 />
               </Link>
             </div>
+
+            {/* <!-- Mobile menu button --> */}
             <div className="flex lg:hidden">
-              {/* <!-- Mobile menu button --> */}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
@@ -129,22 +179,28 @@ function Header() {
               >
                 <span className="sr-only">Open main menu</span>
                 {/* <Bars3Icon aria-hidden="true" className="size-6 text-white icon-white" style={{ color: '#fff' }} /> */}
-                <FontAwesomeIcon icon={faBars} className="h-6 w-6 icon-white" style={{ color: '#FB6F92'}} />
+                <FontAwesomeIcon
+                  icon={faBars}
+                  className="icon-white h-6 w-6"
+                  style={{ color: "#FB6F92" }}
+                />
               </button>
             </div>
-            <PopoverGroup className="hidden lg:flex lg:gap-x-4 items-center">
-              {/* <Link to="/clients/orders" className="text-sm/6 font-semibold" style={styles.link}>
-                Orders
-              </Link> */}
 
-              {/* Shop links */}
+            {/* Shop links */}
+            <PopoverGroup className="hidden items-center lg:flex lg:gap-x-4">
               <Popover className="relative">
-                
-                <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 focus:outline-none shadow-md"
-                  style={styles.shopDropButton}>
-                    <FontAwesomeIcon icon={faStore} />
-                    <span>Bubbli Store</span>
-                  <ChevronDownIcon aria-hidden="true" className="size-5 flex-none text-gray-400" />
+                {/* Shop Links main button */}
+                <PopoverButton
+                  className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 shadow-md focus:outline-none"
+                  style={styles.shopDropButton}
+                >
+                  <FontAwesomeIcon icon={faStore} />
+                  <span>Bubbli Store</span>
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="size-5 flex-none text-gray-400"
+                  />
                 </PopoverButton>
 
                 {/* Shop Features Sub-Menu */}
@@ -160,14 +216,23 @@ function Header() {
                         className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                       >
                         <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <FontAwesomeIcon icon={item.icon} aria-hidden="true" className="size-6 text-[#FB6F92] group-hover:text-[#1EBA15]" />
+                          <FontAwesomeIcon
+                            icon={item.icon}
+                            aria-hidden="true"
+                            className="size-6 text-[#FB6F92] group-hover:text-[#1EBA15]"
+                          />
                         </div>
                         <div className="flex-auto">
-                          <Link to={item.href} className="block font-semibold text-[#FB6F92] group-hover:text-[#1EBA15]">
+                          <Link
+                            to={item.href}
+                            className="block font-semibold text-[#FB6F92] group-hover:text-[#1EBA15]"
+                          >
                             {item.name}
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className="mt-1 text-[#FB6F92] group-hover:text-[#1EBA15]">{item.description}</p>
+                          <p className="mt-1 text-[#FB6F92] group-hover:text-[#1EBA15]">
+                            {item.description}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -179,7 +244,10 @@ function Header() {
                         href={item.href}
                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-[#FB6F92] hover:bg-gray-100"
                       >
-                        <item.icon aria-hidden="true" className="size-5 flex-none text-[#1EBA15]" />
+                        <item.icon
+                          aria-hidden="true"
+                          className="size-5 flex-none text-[#1EBA15]"
+                        />
                         <span>{item.name}</span>
                       </a>
                     ))}
@@ -187,160 +255,336 @@ function Header() {
                 </PopoverPanel>
               </Popover>
 
-              <Link to="/clients/products" className="text-sm/6 font-semibold flex gap-x-2 items-center" style={styles.link}>
+              {/* community rewards link */}
+              <Link
+                to="/clients/products"
+                className="flex items-center gap-x-2 text-sm/6 font-semibold"
+                style={styles.link}
+              >
                 <span>Community Rewards</span>
-                <img src={rewardsGif} alt="Reward icon by Icons8" className="h-12 w-12" />
+                <img
+                  src={rewardsGif}
+                  alt="Reward icon by Icons8"
+                  className="h-12 w-12"
+                />
               </Link>
-
             </PopoverGroup>
 
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4">
-              {/* Customer Login */}
-              <Link to="/clients/login" className="text-sm/6 font-semibold flex items-center gap-x-2 shadow-md"
-                style={styles.loginButton}>
-                  <FontAwesomeIcon icon={faUser} className="h-6 w-6 text-white icon-white" style={{ color: '#fff'}} />
-                 <span>Log in</span>
-                 {/* <UserIcon className="h-6 w-6 text-white fill-current" aria-hidden="true" /> */}
-              </Link>
-
-              {/* User Cart */}
+            <div className="hidden gap-x-4 lg:flex lg:flex-1 lg:justify-end">
+              {/* User Cart Button */}
               <button
                 onClick={() => setCartOpen(true)}
                 style={styles.cartButton}
                 className="shadow-md"
               >
-                <div className="text-sm/6 font-semibold flex items-center gap-x-2">
-                  <ShoppingCartIcon className="h-6 w-6 text-white fill-current" aria-hidden="true" />
-                  <span className="text-sm/6 font-semibold">Cart</span>
-                  ({cartItems.length})
+                <div className="flex items-center gap-x-2 text-sm/6 font-semibold">
+                  <ShoppingCartIcon
+                    className="h-6 w-6 fill-current text-white"
+                    aria-hidden="true"
+                  />
+                  <span className="text-sm/6 font-semibold">Cart</span>(
+                  {cartItems.length})
                 </div>
               </button>
+
+              {/* Customer Login */}
+              {user ? (
+                <div
+                  className="user-profile shadow-md"
+                  style={styles.userProfileCard}
+                >
+                  <Link
+                    to="/clients/profile"
+                    className="profile-link flex items-center gap-x-2"
+                  >
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      className="profile-icon size-10 text-[#FB6F92]"
+                    />
+                    <span className="text-black">{user.username}</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="logout-button"
+                    style={styles.logoutButton}
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-x-4">
+                  <Link
+                    to="/clients/login"
+                    className="flex items-center gap-x-2 text-sm/6 font-semibold shadow-md"
+                    style={styles.loginButton}
+                  >
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="icon-white h-6 w-6 text-white"
+                      style={{ color: "#fff" }}
+                    />
+                    <span>Log in</span>
+                  </Link>
+                  <Link
+                    to="clients/signup"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={styles.signupButton}
+                    className="flex-1 rounded-lg px-3 py-2.5 text-center text-base/7 font-semibold text-white shadow-lg hover:bg-gray-50"
+                  >
+                    <div className="flex items-center gap-x-2.5">
+                      <FontAwesomeIcon
+                        icon={faUserPen}
+                        className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                        aria-hidden="true"
+                      />
+                      <span className="text-[#FB6F92]">Sign Up</span>
+                    </div>
+                  </Link>
+                </div>
+              )}
             </div>
           </nav>
         </div>
       </div>
-     
+
       {/* Mobile menu is visible on screen less than large */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <div style={{paddingTop:"200px"}}>
-          <div className="fixed inset-0 z-10z" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-10z w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-lg"
-             style={styles.mobileNavbar}>
-              <div style={styles.mobileNavbarWrap}>
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
+      >
+        <div style={{ paddingTop: "200px" }}>
+          <div className="z-10z fixed inset-0" />
+          <DialogPanel
+            className="z-10z fixed inset-y-0 right-0 w-full overflow-y-auto bg-white shadow-lg sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+            style={styles.mobileNavbar}
+          >
+            <div style={styles.mobileNavbarWrap}>
+              <div style={styles.mobileNav}>
+                {/* header */}
                 <div className="flex items-center justify-between">
-                  <a href="#" className="-m-1.5 p-1.5 flex items-center gap-x-2.5z">
+                  <a
+                    href="#"
+                    className="gap-x-2.5z -m-1.5 flex items-center p-1.5"
+                  >
                     <span className="sr-only">bubbli cleaning solutions</span>
                     <img
                       alt="bubbli cleaning solutions"
                       src={logo}
                       className="h-20 w-auto"
                     />
-                    <span className="text-white pt-5">Cleaning Solutions</span>
+                    <span className="pt-5 text-white">Cleaning Solutions</span>
                   </a>
                   <button
                     type="button"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="-m-2.5 rounded-md p-2.5 text-gray-700 bg-white"
+                    className="-m-2.5 rounded-md bg-white p-2.5 text-gray-700"
                   >
                     <span className="sr-only">Close menu</span>
-                    <FontAwesomeIcon icon={faClose} aria-hidden="true" className="size-6 text-[#FB6F92]" />
+                    <FontAwesomeIcon
+                      icon={faClose}
+                      aria-hidden="true"
+                      className="size-6 text-[#FB6F92]"
+                    />
                   </button>
                 </div>
+                {/* body */}
                 <div className="mt-6 flow-root">
                   <div className="-my-6 divide-y divide-gray-500/10">
                     <div className="space-y-2 py-6">
+                      {/* Store Links */}
                       <Disclosure as="div" className="-mx-3">
-                        <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 shadow-lg" 
-                          style={styles.mobileNavbarStoreButton}>
+                        <DisclosureButton
+                          className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 shadow-lg hover:bg-gray-50"
+                          style={styles.mobileNavbarStoreButton}
+                        >
                           <div className="flex items-center gap-x-2.5">
-                            <FontAwesomeIcon icon={faStore} className="h-6 w-6 text-[#FB6F92] fill-current" aria-hidden="true" />
+                            <FontAwesomeIcon
+                              icon={faStore}
+                              className="h-6 w-6 fill-current text-[#FB6F92]"
+                              aria-hidden="true"
+                            />
                             Bubbli Store
                           </div>
-                          <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-[open]:rotate-180" />
+                          <ChevronDownIcon
+                            aria-hidden="true"
+                            className="size-5 flex-none group-data-[open]:rotate-180"
+                          />
                         </DisclosureButton>
-                        <DisclosurePanel className="mt-2 space-y-2 bg-white rounded-lg shadow-lg">
+                        <DisclosurePanel className="mt-2 space-y-2 rounded-lg bg-white shadow-lg">
                           {[...shopLinks, ...callsToAction].map((item) => (
                             <DisclosureButton
                               key={item.name}
                               as="a"
-                              // href={item.href}
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-white hover:bg-gray-50"
                             >
-                              <Link to={item.href} className="text-[#FB6F92]">
+                              <Link
+                                to={item.href}
+                                className="text-[#FB6F92]"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
                                 {item.name}
                               </Link>
                             </DisclosureButton>
                           ))}
                         </DisclosurePanel>
                       </Disclosure>
+
+                      {/* about us link */}
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faInfoCircle} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <FontAwesomeIcon
+                            icon={faInfoCircle}
+                            className="h-6 w-6 fill-current text-white"
+                            aria-hidden="true"
+                          />
                           <span>About Us</span>
                         </div>
                       </Link>
+
+                      {/* Community Rewards Link */}
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faGifts} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <FontAwesomeIcon
+                            icon={faGifts}
+                            className="h-6 w-6 fill-current text-white"
+                            aria-hidden="true"
+                          />
                           <span>Bubbli Community Rewards</span>
                         </div>
                       </Link>
+
+                      {/* Refer a friend link */}
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faHandHoldingDollar} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <FontAwesomeIcon
+                            icon={faHandHoldingDollar}
+                            className="h-6 w-6 fill-current text-white"
+                            aria-hidden="true"
+                          />
                           <span>Refer a Friend</span>
                         </div>
                       </Link>
+
+                      {/* FAQs link */}
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faQuestionCircle} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <FontAwesomeIcon
+                            icon={faQuestionCircle}
+                            className="h-6 w-6 fill-current text-white"
+                            aria-hidden="true"
+                          />
                           <span>FAQs</span>
                         </div>
                       </Link>
+
+                      {/* Policies link */}
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-gray-50"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faScroll} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
+                          <FontAwesomeIcon
+                            icon={faScroll}
+                            className="h-6 w-6 fill-current text-white"
+                            aria-hidden="true"
+                          />
                           <span>Policies</span>
                         </div>
                       </Link>
-                      
                     </div>
+
                     <div className="py-6">
-                      <Link
-                        to="clients/login"
-                        onClick={() => setMobileMenuOpen(false)}
-                        style={styles.loginButton}
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-gray-50 text-center shadow-lg"
-                      >
-                        <div className="flex items-center gap-x-2.5">
-                          <FontAwesomeIcon icon={faUser} className="h-6 w-6 text-white fill-current" aria-hidden="true" />
-                          <span>Log in</span>
+                      {user ? (
+                        <div
+                          className="user-profile-mobile-card rounded-xl p-4"
+                          style={styles.userProfileMobileCard}
+                        >
+                          <Link
+                            to="/clients/profile"
+                            className="profile-link"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <FontAwesomeIcon
+                              icon={faUserCircle}
+                              className="profile-icon size-10 text-[#FB6F92]"
+                            />
+                            <img src={user.profilePic} alt={user.username} />
+                            <span className="text-black">{user.username}</span>
+                          </Link>
+                          <div className="grid-cols-2z grid w-full gap-x-2">
+                            <button
+                              onClick={handleLogout}
+                              className="logout-button"
+                              style={styles.logoutButton}
+                            >
+                              Logout
+                            </button>
+                          </div>
                         </div>
-                      </Link>
+                      ) : (
+                        <div className="flex w-full gap-x-4">
+                          {/* login button */}
+                          <Link
+                            to="clients/login"
+                            onClick={() => setMobileMenuOpen(false)}
+                            style={styles.signupButton}
+                            className="flex-1 rounded-lg px-3 py-2.5 text-center text-base/7 font-semibold text-white shadow-lg hover:bg-gray-50"
+                          >
+                            <div className="col-span-6 flex items-center gap-x-2.5">
+                              <FontAwesomeIcon
+                                icon={faUser}
+                                className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                                aria-hidden="true"
+                              />
+                              <span className="text-[#FB6F92]">Log in</span>
+                            </div>
+                          </Link>
+                          {/* sign up button */}
+                          <Link
+                            to="clients/signup"
+                            onClick={() => setMobileMenuOpen(false)}
+                            style={styles.signupButton}
+                            className="flex-1 rounded-lg px-3 py-2.5 text-center text-base/7 font-semibold text-white shadow-lg hover:bg-gray-50"
+                          >
+                            <div className="flex items-center gap-x-2.5">
+                              <FontAwesomeIcon
+                                icon={faUserPen}
+                                className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                                aria-hidden="true"
+                              />
+                              <span className="text-[#FB6F92]">Sign Up</span>
+                            </div>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </DialogPanel>
         </div>
       </Dialog>
 
+      {/* User Cart */}
       <Cart
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
@@ -348,7 +592,6 @@ function Header() {
         onRemoveItem={handleRemoveItem}
       />
     </header>
-
   );
 }
 
@@ -375,9 +618,13 @@ const styles = {
     backgroundImage: "linear-gradient(120deg, #FB6F92 30%, rgba(0,0,0,0) 90%)",
     color: "#fff",
   },
+  mobileNav: {
+    backgroundImage: "linear-gradient(120deg, #FB6F92 30%, rgba(0,0,0,0) 90%)",
+    color: "#fff",
+    padding: "20px 40px",
+  },
   shopFeaturesSubMenu: {
     backgroundColor: "#fff",
-    
   },
   mobileNavbar: {
     padding: "0px",
@@ -391,14 +638,14 @@ const styles = {
     backgroundSize: "cover", // Ensures the background image covers the entire container
     backgroundPosition: "center", // Centers the background image
     height: "100%",
-    padding: "20px",
+    // padding: "20px",
   },
   mobileNavbarStoreButton: {
     backgroundColor: "#fff",
     color: "#FB6F92",
     padding: "10px",
     borderRadius: "10px",
-    outline: "none", 
+    outline: "none",
     textDecoration: "none",
   },
   mobileNavbarStoreLinks: {
@@ -436,12 +683,6 @@ const styles = {
   icon: {
     marginRight: "5px",
   },
-  profileLink: {
-    display: "flex",
-    alignItems: "center",
-    color: "#fff",
-    textDecoration: "none",
-  },
   profileImage: {
     width: "40px",
     height: "40px",
@@ -471,6 +712,22 @@ const styles = {
     borderRadius: "10px",
     textDecoration: "none",
   },
+  signupButton: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    color: "#FB6F92",
+    padding: "10px 20px",
+    borderRadius: "10px",
+    textDecoration: "none",
+  },
+  userProfileMobileCard: {
+    display: "flex",
+    alignItems: "center",
+    justify: "space-between",
+    gap: "10px",
+    backgroundColor: "#fff",
+  },
   cartButton: {
     display: "flex",
     alignItems: "center",
@@ -485,29 +742,41 @@ const styles = {
     color: "#FB6F92",
     padding: "10px",
     borderRadius: "10px",
-    outline: "none", 
+    outline: "none",
     textDecoration: "none",
   },
+  // user logged in styles
+  userProfileCard: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    backgroundColor: "#fff",
+    padding: "10px",
+    borderRadius: "10px",
+  },
+  userProfile: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  },
+  profileLink: {
+    display: "flex",
+    alignItems: "center",
+    gap: "5px",
+    textDecoration: "none",
+    color: "#FB6F92",
+  },
+  profileIcon: {
+    fontSize: "24px",
+  },
+  logoutButton: {
+    backgroundColor: "#FB6F92",
+    color: "#fff",
+    border: "none",
+    padding: "10px 20px",
+    borderRadius: "10px",
+    cursor: "pointer",
+  },
 };
-
-/* 
-<nav>
-    <img src="./bubbli-icon_white.svg" alt="svg image here" style="height: auto;width: 500px;"/>
-    <h1>Bubbli Cleaning Solutions</h1>
-    <ul>
-      <li>
-        <Link to="/clients/home">Home</Link>
-      </li>
-      <li>
-        <Link to="/clients/products">Catalogue</Link>
-      </li>
-      <li>
-        <Link to="/clients/login">Login</Link>
-      </li>
-    </ul>
-  </nav>
-*/
-
-
 
 export default Header;

@@ -1,0 +1,41 @@
+Access to XMLHttpRequest at 'http://localhost:3000/register' from origin 'http://localhost:5173' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+{
+    "message": "Network Error",
+    "name": "AxiosError",
+    "stack": "AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:5173/node_modules/.vite/deps/axios.js?v=acc4d522:1596:14)\n    at Axios.request (http://localhost:5173/node_modules/.vite/deps/axios.js?v=acc4d522:2124:41)\n    at async handleSubmit (http://localhost:5173/src/pages/clients/CustomerSignUp.jsx?t=1738170958964:52:24)",
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+        ],
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {},
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        },
+        "method": "post",
+        "url": "http://localhost:3000/register",
+        "data": "{\"username\":\"\",\"email\":\"rzeg@email.com\",\"firstName\":\"Rachel\",\"middleName\":\"\",\"lastName\":\"Zeglar\",\"contactNumberPrimary\":\"\",\"contactNumberSecondary\":\"\",\"password\":\"\",\"age\":\"23\",\"contactNumber\":\"0783450987\",\"gender\":\"Female\"}"
+    },
+    "code": "ERR_NETWORK"
+}
+
+POST http://localhost:3000/register net::ERR_FAILED

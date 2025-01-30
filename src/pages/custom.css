@@ -32,6 +32,36 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: #FB6F92 #f0f0f0;
+  outline: none;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  background-color: #FB6F92;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover Effect */
+button:hover {
+  background-color: #e05a7a;
+  transform: scale(1.05);
+}
+
+/* Active/Click Effect */
+button:active {
+  background-color: #c94a6a;
+  transform: scale(0.95);
+}
+
+/* Focus Effect */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(251, 111, 146, 0.5);
 }
 
 /* customer support chat panel */
@@ -42,7 +72,7 @@
   width: 300px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px 8px 0 0;
+  border-radius: 16px 16px 0 0;
   z-index: 1000;
   overflow: hidden;
   transition: height 0.3s ease;
@@ -79,7 +109,7 @@
 .chat-messenger {
   display: flex;
   padding: 10px;
-  border-top: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
 }
 
 .chat-messenger input {
@@ -97,4 +127,24 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.chat-messenger button:hover {
+  background-color: #e05a7a;
+  transform: scale(1.05);
+}
+
+.chat-messenger button:active {
+  background-color: #c94a6a;
+  transform: scale(0.95);
+}
+
+.chat-messenger button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(251, 111, 146, 0.5);
+}
+
+/* Image Object Fit */
+.img-object-fit {
+  object-fit: cover;
 }

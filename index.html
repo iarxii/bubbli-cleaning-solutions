@@ -9,11 +9,27 @@
   <body>
     <div class="rootWrap">
       <!-- <img src="src/assets/video/bubbles_peach_anim.gif?nocache=${new Date().getTime()}" alt="bubbli-animation" style="width:100%;" class="bg-animation"> -->
-      <video src="src/assets/video/bubbli_anim.mp4" autoplay loop muted style="width:100%;" class="bg-animation"></video>
+      <video id="bganim" src="src/assets/video/bubbli_anim.mp4" autoplay loop muted style="width:100%;" class="bg-animation"></video>
       <!-- <div class="bg-animation-div"></div> -->
       <div id="root" class="glassmorphicz"></div>
     </div>
     
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      // pause animation after 10min from page load
+      document.addEventListener('DOMContentLoaded', () => {
+        const bgAnim = document.getElementById('bganim');
+        if (bgAnim) {
+          console.log(`🚩 bg animation countdown: ${new Date().toUTCString()}`);
+          setTimeout(() => {
+            bgAnim.pause();
+            console.log(`🚩 bg animation stopped: ${new Date().toUTCString()}`);
+          }, 600000); // 10 minutes in milliseconds
+        } else {
+          console.error('🚩 bg animation element not found');
+        }
+      });
+    </script>
   </body>
 </html>

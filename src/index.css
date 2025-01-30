@@ -66,6 +66,50 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
 }
 
+.glassmorphic-less-50 {
+  /* min-height: 100vh; */
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(5px); /* Blur effect */
+  -webkit-backdrop-filter: blur(5px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.glassmorphic-less-30 {
+  /* min-height: 100vh; */
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(3px); /* Blur effect */
+  -webkit-backdrop-filter: blur(3px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.glassmorphic-less-20 {
+  /* min-height: 100vh; */
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(2px); /* Blur effect */
+  -webkit-backdrop-filter: blur(2px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
+.glassmorphic-less-10 {
+  /* min-height: 100vh; */
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  /*border-radius: 16px;*/ /* Rounded corners */
+  backdrop-filter: blur(1px); /* Blur effect */
+  -webkit-backdrop-filter: blur(1px); /* Blur effect for Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+}
+
 .glassmorphic-red {
   /* min-height: 100vh; */
   position: relative;
