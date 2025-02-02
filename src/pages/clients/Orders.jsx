@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// import components
+import SpecialOffers from "../components/SpecialOffers";
+
 function Orders() {
   // Mock user orders
   const mockOrders = [
@@ -33,7 +36,7 @@ function Orders() {
   const [orders] = useState(mockOrders);
 
   return (
-    <div>
+    <div className="glassmorphic">
       {/* Hero Section */}
       <section style={styles.hero} className="grid gap-y-4 shadow-md">
         <h1 className="text-[#FB6F92]">Purchase Orders</h1>
@@ -72,22 +75,7 @@ function Orders() {
         <div style={styles.adsContainer}>
           <h3 className="text-[#FB6F92] mb-4">Special Offers</h3>
           <hr className="text-black h-4" />
-          <div style={styles.adCard}>
-            <img
-              src="https://via.placeholder.com/300x200?text=Ad+1"
-              alt="Ad 1"
-              style={styles.adImage}
-            />
-            <p style={styles.generalText}>Exclusive discounts on cleaning supplies!</p>
-          </div>
-          <div style={styles.adCard}>
-            <img
-              src="https://via.placeholder.com/300x200?text=Ad+2"
-              alt="Ad 2"
-              style={styles.adImage}
-            />
-            <p style={styles.generalText}>Buy 1 Get 1 Free on selected items!</p>
-          </div>
+          <SpecialOffers />
         </div>
       </div>
     </div>

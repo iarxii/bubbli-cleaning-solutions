@@ -1,12 +1,15 @@
 import { faHeadset, faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStore, faPaperPlane, faLightbulb, faWandMagicSparkles, faWandSparkles, faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faStore, faUser, faPaperPlane, faLightbulb, faWandMagicSparkles, faWandSparkles, faRobot } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // import media
 import meshBackgroundRed from "../../assets/brand/mesh-red-1.png";
 import profileImgPlaceholder from "../../assets/profile_avatar.jpg";
-import agentAvatar from "../../assets/agents/tshepi/agent_img.jpg";
+import agentAvatar from "../../assets/agents/tshepi/agent_avatar.jpeg";
+import agentImageFull from "../../assets/agents/tshepi/agent_img_full.jpg";
+import agentImageThumb from "../../assets/agents/tshepi/agent_img_thumb.jpg";
 
 function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +24,7 @@ function ChatWindow() {
   const agent = {
     name: "Tshepi",
     avatar: agentAvatar,
+    profileLink: "/agents/tshepi",
   };
 
   const chatMessages = [
@@ -68,8 +72,9 @@ function ChatWindow() {
                   className="shadow-lg img-object-fit"
                 />
               </div>
-              <div className="agentName font-semibold rounded-xl text-[#fff]  bg-[#FB6F92] p-2 shadow-md">
-                Hi, my name is Tshepi 👋
+              <div className="agentName font-semibold rounded-xl text-[#fff]  bg-[#FB6F92] px-2 pt-4 pb-6 shadow-md">
+                <p className="text-center mb-4">Hi, my name is Tshepi <span className="p-1 bg-white" style={{borderRadius: "50%", fontSize: "20px"}}>👋</span></p>
+                <Link to={agent.profileLink} style={styles.viewProfileButton} className="shadow-md"><FontAwesomeIcon icon={faUser} /> View my profile</Link>
               </div>
             </div>
             <div className="chat-messages" style={styles.chatMessages}>
@@ -226,15 +231,25 @@ const styles = {
     // height: "50px",
     // width: "50px",
   },
+  viewProfileButton: {
+    backgroundColor: "#fff",
+    color: "#FB6F92",
+    border: "2px solid #FB6F92",
+    borderRadius: "16px",
+    padding: "5px 10px",
+    marginBottom: "20px",
+    cursor: "pointer",
+    outline: "none",
+  },
   agentAvatarContainer: {
     zIndex: 1,
   },
   agentAvatarImg: {
-    borderRadius: "16px",
+    borderRadius: "50%",
     width: "200px",
     height: "200px",
     backgroundColor: "#f7f7f7",
-    border: "3px solid #FB6F92",
+    border: "5px solid #FB6F92",
   },
   agentAvatarImgThumb: {
     borderRadius: "8px",

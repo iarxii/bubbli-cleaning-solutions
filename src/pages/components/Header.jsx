@@ -163,7 +163,7 @@ function Header() {
                 <img
                   alt="bubbli cleaning solutions"
                   src={logo}
-                  className="h-8 w-auto"
+                  className="h-8 w-auto animate__animated animate__pulse animate__infinite"
                   style={styles.logo}
                 />
               </Link>
@@ -301,7 +301,7 @@ function Header() {
                       icon={faUserCircle}
                       className="profile-icon size-10 text-[#FB6F92]"
                     />
-                    <span className="text-black">{user.username}</span>
+                    <span className="text-black">{user.first_name} {user.last_name}</span>
                   </Link>
                   <button
                     onClick={handleLogout}
@@ -325,7 +325,8 @@ function Header() {
                     />
                     <span>Log in</span>
                   </Link>
-                  <Link
+                  {/* signup button */}
+                  {/* <Link
                     to="clients/signup"
                     onClick={() => setMobileMenuOpen(false)}
                     style={styles.signupButton}
@@ -334,12 +335,12 @@ function Header() {
                     <div className="flex items-center gap-x-2.5">
                       <FontAwesomeIcon
                         icon={faUserPen}
-                        className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                        className="text-whitez h-6 w-6 fill-current text-[#FB6F92]"
                         aria-hidden="true"
                       />
                       <span className="text-[#FB6F92]">Sign Up</span>
                     </div>
-                  </Link>
+                  </Link> */}
                 </div>
               )}
             </div>
@@ -511,6 +512,7 @@ function Header() {
                       </Link>
                     </div>
 
+                    {/* login / signup */}
                     <div className="py-6">
                       {user ? (
                         <div
@@ -526,8 +528,8 @@ function Header() {
                               icon={faUserCircle}
                               className="profile-icon size-10 text-[#FB6F92]"
                             />
-                            <img src={user.profilePic} alt={user.username} />
-                            <span className="text-black">{user.username}</span>
+                            {/* <img src={user.profilePic} alt={user.username} /> */}
+                            <span className="text-black">{user.first_name} {user.last_name}</span>
                           </Link>
                           <div className="grid-cols-2z grid w-full gap-x-2">
                             <button
@@ -551,7 +553,7 @@ function Header() {
                             <div className="col-span-6 flex items-center gap-x-2.5">
                               <FontAwesomeIcon
                                 icon={faUser}
-                                className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                                className="text-whitez h-6 w-6 fill-current text-[#FB6F92]"
                                 aria-hidden="true"
                               />
                               <span className="text-[#FB6F92]">Log in</span>
@@ -567,7 +569,7 @@ function Header() {
                             <div className="flex items-center gap-x-2.5">
                               <FontAwesomeIcon
                                 icon={faUserPen}
-                                className="h-6 w-6 fill-current text-whitez text-[#FB6F92]"
+                                className="text-whitez h-6 w-6 fill-current text-[#FB6F92]"
                                 aria-hidden="true"
                               />
                               <span className="text-[#FB6F92]">Sign Up</span>

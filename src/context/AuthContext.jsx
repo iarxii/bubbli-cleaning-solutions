@@ -12,9 +12,10 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
+        console.log("DEBUG::.[useEffect]Decoded JWT in AuthContext:", decoded);
         setUser(decoded);
       } catch (err) {
-        console.error("Invalid token:", err);
+        console.error("Error decoding JWT:", err);
         localStorage.removeItem("token");
       }
     }
@@ -22,19 +23,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token) => {
     localStorage.setItem("token", token);
-    // debug: user details ⚠️ remove in production!!!
-    console.log("debug token: \n", token);
     const decoded = jwtDecode(token);
+    console.log("DEBUG::.[login()]Decoded JWT in AuthContext:", decoded);
     setUser(decoded);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    console.log("Token removed - logout")
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

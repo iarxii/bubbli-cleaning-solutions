@@ -31,13 +31,14 @@ function Landing() {
       style={styles.container}
     >
       {/* Hero Section */}
-      <section style={styles.hero} className="rounded-lg shadow-lg">
+      <section style={styles.hero} className="rounded-lg shadow-lg animate__animated animate__zoomIn fadeInUp animate__delay-1sz">
         <div className="glassmorphic-red">
           <div style={styles.heroWrap} className="gap-y-4">
             <img
               src={bubbliLogo}
               alt="Bubbli Cleaning Solutions"
-              style={styles.heroLogo}
+              style={styles.heroLogo} 
+              className="animate__animated animate__fadeInUp animate__delay-1s"
             />
             {/* <h1 style={styles.heroTitle}>
               <span
@@ -47,12 +48,13 @@ function Landing() {
                 cleaning solutions
               </span>
             </h1> */}
-            <p style={styles.heroSubtitle}>
+            <p style={styles.heroSubtitle} className="animate__animated animate__fadeInUp animate__delay-2s">
               Give your home a <b>Bubbli Clean</b>!
             </p>
             <Link
               to="/clients/home/#anchor-catalogue"
               style={styles.heroButton}
+              className="animate__animated animate__fadeInUp animate__delay-2s"
             >
               Shop Now
             </Link>

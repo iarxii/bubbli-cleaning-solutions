@@ -125,6 +125,7 @@ const loginUser = async (req, res) => {
         }
   
         // Generate JWT token with user details
+        console.log("DEBUG::.User data before signing JWT:", user);
         const token = jwt.sign(
           { 
             userId: user.id,
