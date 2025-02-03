@@ -29,6 +29,20 @@ const createUser = (user, callback) => {
   );
 };
 
+
+const findAdminByUsername = (username, callback) => {
+  const query = "SELECT * FROM admins WHERE username = ?";
+  db.query(query, [username], (err, results) => {
+    if (err) {
+      return callback(err, null);
+    }
+    if (results.length === 0) {
+      return callback(null, null);
+    }
+    return callback(null, results[0]);
+  });
+};
+
 const findUserByUsername = (username, callback) => {
   const query = "SELECT * FROM users WHERE username = ?";
   db.query(query, [username], (err, results) => {
@@ -58,6 +72,7 @@ const findUserByContactOrEmail = (contactNumberPrimary, email, callback) => {
 
 module.exports = {
   createUser,
+  findAdminByUsername,
   findUserByUsername,
   findUserByContactOrEmail,
 };

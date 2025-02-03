@@ -24,10 +24,11 @@ function ChatWindow() {
   const agent = {
     name: "Tshepi",
     avatar: agentAvatar,
-    profileLink: "/agents/tshepi",
+    profileLink: "admin/agent/profile/tshepi",
   };
 
-  const chatMessages = [
+  const chatMessages = [];
+  /* const chatMessages = [
     { sender: "agent", text: "Hi there! How can I assist you today?" },
     { sender: "user", text: "I need help with my order." },
     { sender: "agent", text: "Sure, I'd be happy to help. Can you provide me with your order number?" },
@@ -35,7 +36,7 @@ function ChatWindow() {
     { sender: "agent", text: "Thank you. Let me check the status of your order." },
     { sender: "user", text: "Okay, I'll wait." },
     { sender: "agent", text: "Your order is on its way and should arrive by tomorrow." },
-  ];
+  ]; */
 
   const prompts = [
     "What are your store hours?",
@@ -59,8 +60,8 @@ function ChatWindow() {
       </div>
       {isOpen && (
         <div style={styles.chatContent}>
-          <div className="glassmorphic-less-30">
-            <div className="agentContainer p-4" style={styles.chatWindow}>
+          <div className="glassmorphic-less-30z">
+            <div className="agentContainer p-4 pt-0" style={styles.chatWindow}>
               <div
                 className="agentAvatar flex justify-center p-4"
                 style={styles.agentAvatarContainer}
@@ -69,33 +70,34 @@ function ChatWindow() {
                   src={agent.avatar}
                   alt={agent.name}
                   style={styles.agentAvatarImg}
-                  className="shadow-lg img-object-fit"
+                  className="shadow-lg img-object-fit  animate__animated animate__slideInDown"
                 />
               </div>
-              <div className="agentName font-semibold rounded-xl text-[#fff]  bg-[#FB6F92] px-2 pt-4 pb-6 shadow-md">
-                <p className="text-center mb-4">Hi, my name is Tshepi <span className="p-1 bg-white" style={{borderRadius: "50%", fontSize: "20px"}}>👋</span></p>
+              <div className="agentName font-semibold rounded-xl text-[#fff]  bg-[#FB6F92] px-2 pt-4 pb-6 shadow-md animate__animated animate__slideInLeftz animate__lightSpeedInLeft animate__delay-1s animate__fast" style={{borderRadius: "0 20px 20px 20px",}}>
+                <p className="text-center mb-4">Hi, my name is Tshepi.</p>
                 <Link to={agent.profileLink} style={styles.viewProfileButton} className="shadow-md"><FontAwesomeIcon icon={faUser} /> View my profile</Link>
               </div>
             </div>
-            <div className="chat-messages" style={styles.chatMessages}>
-              {chatMessages.map((bubble, index) => (
-                <div
-                  key={index}
-                  className={`chat-bubble shadow-md ${bubble.sender === "agent" ? "agent" : "user"}`}
-                  style={bubble.sender === "agent" ? styles.agentBubble : styles.userBubble}
-                >
-                  {bubble.sender === "agent" && (
-                    <img
-                      src={agent.avatar}
-                      alt={agent.name}
-                      style={styles.agentAvatarImgThumb}
-                      className="shadow-lg border-2 border-white img-object-fit"
-                    />
-                  )}
-                  <span>{bubble.text}</span>
-                </div>
-              ))}
-            </div>
+            {chatMessages.length !== 0 ? 
+              <div className="chat-messages glassmorphic-less-30  animate__animated animate__slideInUp animate__delay-1s animate__fast" style={styles.chatMessages}>
+                {chatMessages.map((bubble, index) => (
+                  <div
+                    key={index}
+                    className={`chat-bubble shadow-md ${bubble.sender === "agent" ? "agent" : "user"}`}
+                    style={bubble.sender === "agent" ? styles.agentBubble : styles.userBubble}
+                  >
+                    {bubble.sender === "agent" && (
+                      <img
+                        src={agent.avatar}
+                        alt={agent.name}
+                        style={styles.agentAvatarImgThumb}
+                        className="shadow-lg border-2 border-white img-object-fit"
+                      />
+                    )}
+                    <span className="text-start">{bubble.text}</span>
+                  </div>
+                ))}
+              </div> : <span style={{fontSize:"10px",color:"#FB6F92",paddingBottom:"160px"}}>Send a message to chat with an agent</span>}
           </div>
           <div className="chat-messenger items-end" style={styles.chatMessenger}>
             <div className="relative w-full items-center">
@@ -167,7 +169,7 @@ const styles = {
   chatWindow: {
     // backgroundColor: "#fff",
     color: "#000",
-    padding: "20px",
+    // padding: "20px",
     textAlign: "center",
     // marginTop: "20px",
     // marginBottom: "20px",
@@ -185,7 +187,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     // backgroundColor: "rgba(255,255,255,0.5)",
-    backgroundColor: "rgba(251, 111, 146,0.5)",
+    backgroundColor: "rgba(224,224,224,0.5)",
+    // backgroundColor: "rgba(251, 111, 146,0.5)",
     borderRadius: "16px 16px 0 0",
     paddingBottom: "150px",
     paddingTop: "12px",
@@ -246,8 +249,8 @@ const styles = {
   },
   agentAvatarImg: {
     borderRadius: "50%",
-    width: "200px",
-    height: "200px",
+    width: "150px",
+    height: "150px",
     backgroundColor: "#f7f7f7",
     border: "5px solid #FB6F92",
   },

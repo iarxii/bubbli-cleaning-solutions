@@ -49,7 +49,7 @@ function Landing() {
               </span>
             </h1> */}
             <p style={styles.heroSubtitle} className="animate__animated animate__fadeInUp animate__delay-2s">
-              Give your home a <b>Bubbli Clean</b>!
+              Give your home a <b className="comfortaa">Bubbli Clean</b>!
             </p>
             <Link
               to="/clients/home/#anchor-catalogue"

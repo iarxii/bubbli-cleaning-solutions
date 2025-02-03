@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./pages/_Layout";
 import Landing from "./pages/Landing";
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminHome from "./pages/admin/AdminHome";
+import AgentProfile from "./pages/admin/AgentProfile";
 import CustomerLogin from "./pages/clients/CustomerLogin";
 import CustomerSignUp from "./pages/clients/CustomerSignUp";
 import CustomerHome from "./pages/clients/Home";
@@ -18,6 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/agent/profile" element={<AgentProfile />} />
         <Route path="/clients/login" element={<CustomerLogin />} />
         <Route path="/clients/signup" element={<CustomerSignUp />} />
         <Route path="/clients/home" element={<CustomerHome />} />

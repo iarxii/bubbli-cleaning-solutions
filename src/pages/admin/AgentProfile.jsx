@@ -5,19 +5,19 @@ import { faRightToBracket, faSave, faCancel, faUser } from "@fortawesome/free-so
 
 // import media
 import bubbliLogo from "../../assets/bubbli-icon_white.svg";
-import userProfileImage from "../../assets/profile_avatar.jpg";
+import agentProfileImage from "../../assets/profile_avatar.jpg";
 
 // import authContext
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../../context/AuthContext";
 
-function UserProfile() {
+function AgentProfile() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
 
-  // initialize user state
-  const [userData, setUserData] = useState({
-    userId: "",
+  // initialize agent state
+  const [agentData, setAgentData] = useState({
+    agentId: "",
     username: "",
     firstName: "",
     middleName: "",
@@ -38,12 +38,12 @@ function UserProfile() {
     email: "",
   });
 
-  // Set user data from context
+  // Set agent data from context
   useEffect(() => {
     if (user) {
       console.log("User context:", user);
-      setUserData({
-        userId: user.userId,
+      setAgentData({
+        agentId: user.agentId,
         username: user.username,
         firstName: user.firstName,
         middleName: user.middleName,
@@ -73,27 +73,26 @@ function UserProfile() {
   // Save updated profile
   const saveProfile = () => {
     // Save profile logic here
-    setUserData((prevUserData) => ({
-      ...prevUserData,
+    setAgentData((prevAgentData) => ({
+      ...prevAgentData,
       ...formData,
     }));
     setUser((prevUser) => ({
       ...prevUser,
       ...formData,
     }));
-    // setUser(formData);
     setEditMode(false);
   };
 
   // Cancel edit
   const cancelEdit = () => {
-    setEditMode({
-      firstName: userData.firstName,
-      middleName: userData.middleName,
-      lastName: userData.lastName,
-      contactNumberPrimary: userData.contactNumberPrimary,
-      contactNumberSecondary: userData.contactNumberSecondary,
-      email: userData.email,
+    setFormData({
+      firstName: agentData.firstName,
+      middleName: agentData.middleName,
+      lastName: agentData.lastName,
+      contactNumberPrimary: agentData.contactNumberPrimary,
+      contactNumberSecondary: agentData.contactNumberSecondary,
+      email: agentData.email,
     });
     setEditMode(false);
   };
@@ -102,7 +101,7 @@ function UserProfile() {
     <div className="glassmorphic">
       <div style={styles.container}>
         <div className="container mx-auto rounded-3xl bg-white p-4 mb-6 shadow-lg">
-          <h1 className="my-4 text-center text-[#FB6F92]"><FontAwesomeIcon icon={faUser} /> User Profile</h1>
+          <h1 className="my-4 text-center text-[#FB6F92]"><FontAwesomeIcon icon={faUser} /> Agent Profile</h1>
           {editMode ? (
             <div style={styles.form} className="rounded-3xl">
               <label style={styles.inputLabel}>
@@ -182,41 +181,40 @@ function UserProfile() {
                 </button>
               </div>
             </div>
-          ) : userData.username ? (
+          ) : agentData.username ? (
             <div className="profile-card justify-center" style={styles.signupCard}>
-              <h1 className="text-center font-boldz text-white truncate">Welcome back {userData.firstName}.</h1>
+              <h1 className="text-center font-boldz text-white truncate">Welcome back {agentData.firstName}.</h1>
               <div class="h-1 w-16 bg-[#fff] mx-auto rounded-xl"></div>
               <div className="flex items-start justify-between gap-2">
-                {/* user details */}
+                {/* agent details */}
                 <div style={{maxHeight:"200px", overflowY:"auto"}}>
                   <p>
-                    <strong>First Name:</strong> {userData.firstName}
+                    <strong>First Name:</strong> {agentData.firstName}
                   </p>
                   <p>
-                    <strong>Middle Name:</strong> {userData.middleName}
+                    <strong>Middle Name:</strong> {agentData.middleName}
                   </p>
                   <p>
-                    <strong>Last Name:</strong> {userData.lastName}
+                    <strong>Last Name:</strong> {agentData.lastName}
                   </p>
                   <p>
                     <strong>Primary Contact:</strong>{" "}
-                    {userData.contactNumberPrimary}
+                    {agentData.contactNumberPrimary}
                   </p>
                   <p>
                     <strong>Secondary Contact:</strong>{" "}
-                    {userData.contactNumberSecondary}
+                    {agentData.contactNumberSecondary}
                   </p>
                   <p>
-                    <strong>Email:</strong> {userData.email}
+                    <strong>Email:</strong> {agentData.email}
                   </p>
                 </div>
                 {/* profile image */}
                 <div>
                   <img
-                    src={userProfileImage}
+                    src={agentProfileImage}
                     alt="profile image"
                     style={styles.signupCardProfileImage}
-                    // className="shadow-md"
                   />
                 </div>
               </div>
@@ -245,14 +243,14 @@ function UserProfile() {
               </p>
               <div className="my-4 flex items-center justify-center gap-4">
                 <button
-                  onClick={() => navigate("/clients/signup")}
+                  onClick={() => navigate("/agents/signup")}
                   style={styles.signupButton}
                 >
                   Sign Up
                 </button>
                 <span>Or</span>
                 <button
-                  onClick={() => navigate("/clients/login")}
+                  onClick={() => navigate("/agents/login")}
                   style={styles.signupButton}
                 >
                   Log in <FontAwesomeIcon icon={faRightToBracket} />
@@ -314,7 +312,6 @@ const styles = {
     width: "100%",
     padding: "8px",
     borderRadius: "8px",
-    // border: "1px solid #ddd",
     color: "#fff",
     fontWeight: "bold",
     backgroundColor: "#FB6F92",
@@ -364,4 +361,4 @@ const styles = {
   },
 };
 
-export default UserProfile;
+export default AgentProfile;
