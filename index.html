@@ -9,7 +9,7 @@
   <body>
     <div class="rootWrap">
       <!-- <img src="src/assets/video/bubbles_peach_anim.gif?nocache=${new Date().getTime()}" alt="bubbli-animation" style="width:100%;" class="bg-animation"> -->
-      <video id="bganim" src="src/assets/video/bubbli_anim.mp4" autoplay loop muted style="width:100%;" class="bg-animation"></video>
+      <video id="bganim" src="src/assets/video/bubbli_anim.mp4" loop muted style="width:100%;" class="bg-animation"></video> <!-- autoplay -->
       <!-- <div class="bg-animation-div"></div> -->
       <div id="root" class="glassmorphicz"></div>
     </div>
@@ -17,17 +17,18 @@
     <script type="module" src="/src/main.jsx"></script>
 
     <script>
-      // pause animation after 10min from page load
+      // pause animation after 3min from page load
       document.addEventListener('DOMContentLoaded', () => {
         const bgAnim = document.getElementById('bganim');
         if (bgAnim) {
-          console.log(`🚩 bg animation countdown: ${new Date().toUTCString()}`);
+          console.log(`🔵🚩 bg animation countdown: ${new Date().toUTCString()}`);
+          bgAnim.play() ? console.log('🟢🚩 bg animation element is playing') : console.log('🔴🚩 bg animation element not playing'); /* removed autoplay param from bgAnim so that the animation vid can be paused when the page loads, then set a timeout to pause the animation vid for performance 🤔 */
           setTimeout(() => {
             bgAnim.pause();
-            console.log(`🚩 bg animation stopped: ${new Date().toUTCString()}`);
-          }, 600000); // 10 minutes in milliseconds
+            console.log(`🟢🚩 bg animation stopped: ${new Date().toUTCString()}`);
+          }, 180000); // 3 minutes in milliseconds
         } else {
-          console.error('🚩 bg animation element not found');
+          console.error('🔴🚩 bg animation element not found');
         }
       });
     </script>
