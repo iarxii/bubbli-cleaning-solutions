@@ -37,29 +37,29 @@ function Orders() {
 
   return (
     <div className="glassmorphic">
-      {/* Hero Section */}
-      <section style={styles.hero} className="grid gap-y-4 shadow-md">
+      {/* Hero Title */}
+      <section className="grid gap-y-4 shadow-md text-center p-10 bg-[#f7f7f7] mb-5 z-10">
         <h1 className="text-[#FB6F92]">Purchase Orders</h1>
-        <p className="text-[#000000]">
+        <p className="text-black">
           View your past orders and track the status of your current orders
         </p>
       </section>
 
-      <div style={styles.container}>
+      <div className="flex flex-col lg:flex-row gap-5 p-5">
         {/* Orders List (8 columns) */}
-        <div style={styles.ordersContainer}>
+        <div className="flex-1 lg:flex-2 bg-white p-5 rounded-lg shadow-md">
           <h3 className="text-[#FB6F92] mb-4">Your Orders ({orders.length})</h3>
           <hr className="text-black h-4" />
           {orders.length > 0 ? (
             orders.map((order) => (
-              <div key={order.id} style={styles.orderCard} className="shadow-md">
-                <h3 style={styles.orderTitle}>Order #{order.id}</h3>
-                <p style={styles.orderText}>Date: {order.date}</p>
-                <p style={styles.orderText}>Total: {order.total}</p>
-                <p style={styles.orderText}>Status: {order.status}</p>
+              <div key={order.id} className="mb-5 p-4 border border-gray-300 rounded-lg bg-[#f9f9f9] shadow-md">
+                <h3 className="text-lg font-bold text-[#FB6F92] mb-2">Order #{order.id}</h3>
+                <p className="text-sm text-black mb-1">Date: {order.date}</p>
+                <p className="text-sm text-black mb-1">Total: {order.total}</p>
+                <p className="text-sm text-black mb-1">Status: {order.status}</p>
                 <ul>
                   {order.items.map((item, index) => (
-                    <li key={index} style={styles.orderText}>
+                    <li key={index} className="text-sm text-black mb-1">
                       {item.quantity} x {item.name}
                     </li>
                   ))}
@@ -72,7 +72,7 @@ function Orders() {
         </div>
 
         {/* Ads Section (4 columns) */}
-        <div style={styles.adsContainer}>
+        <div className="flex-1 lg:flex-1 bg-white p-5 rounded-lg shadow-md">
           <h3 className="text-[#FB6F92] mb-4">Special Offers</h3>
           <hr className="text-black h-4" />
           <SpecialOffers />

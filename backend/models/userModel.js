@@ -29,6 +29,34 @@ const createUser = (user, callback) => {
   );
 };
 
+const createAdmin = (user, callback) => {
+  const query = `
+    INSERT INTO admins 
+    (username, email, first_name, 
+    middle_name, last_name, 
+    contact_number_primary, contact_number_secondary, 
+    gender, age, birth_year, password_hash)
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  db.query(
+    query,
+    [
+      user.username,
+      user.email,
+      user.firstName,
+      user.middleName, // middle name
+      user.lastName,
+      user.contactNumberPrimary,
+      user.contactNumberSecondary, // secondary contact number
+      user.gender,
+      user.age,
+      user.birthYear,
+      user.passwordHash,
+    ],
+    callback,
+  );
+};
 
 const findAdminByUsername = (username, callback) => {
   const query = "SELECT * FROM admins WHERE username = ?";
@@ -72,6 +100,7 @@ const findUserByContactOrEmail = (contactNumberPrimary, email, callback) => {
 
 module.exports = {
   createUser,
+  createAdmin,
   findAdminByUsername,
   findUserByUsername,
   findUserByContactOrEmail,

@@ -78,7 +78,7 @@ const shopLinks = [
   {
     name: "Subscriptions",
     description: "Manage your subscriptions",
-    href: "clients/subscriber",
+    href: "clients/subscribe",
     icon: faBoxOpen,
   },
   {
@@ -239,9 +239,10 @@ function Header() {
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                     {callsToAction.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
+                        target="_blank"
                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-[#FB6F92] hover:bg-gray-100"
                       >
                         <item.icon
@@ -249,7 +250,7 @@ function Header() {
                           className="size-5 flex-none text-[#1EBA15]"
                         />
                         <span>{item.name}</span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </PopoverPanel>
@@ -257,7 +258,7 @@ function Header() {
 
               {/* community rewards link */}
               <Link
-                to="/clients/products"
+                to="/clients/rewards"
                 className="flex items-center gap-x-2 text-sm/6 font-semibold"
                 style={styles.link}
               >

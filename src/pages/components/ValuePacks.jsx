@@ -67,7 +67,7 @@ function ValuePacks() {
       description: "",
       currency: "ZAR",
       currencySymbol: "R",
-      price: "189.99",
+      price: "199.99",
       image: placholder,
       packItems: [
         "1 x 500ml Air Freshener",
@@ -118,11 +118,11 @@ function ValuePacks() {
       ],
     },{
       id: 7,
-      name: "3-Month Bundle Offer",
+      name: "3-Month Bulk Pack",
       description: "",
       currency: "ZAR",
       currencySymbol: "R",
-      price: "359.99",
+      price: "399.99",
       image: placholder,
       packItems: [
         "1 x 1ltr All-Purpose Cleaner",

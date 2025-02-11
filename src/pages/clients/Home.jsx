@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faStore, faChevronLeft, faChevronRight, faGifts } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faStore,
+  faChevronLeft,
+  faChevronRight,
+  faGifts,
+} from "@fortawesome/free-solid-svg-icons";
 
 // import components
 import ValuePacks from "../components/ValuePacks";
@@ -103,64 +109,111 @@ function Home() {
         <section style={styles.hero} className="grid gap-y-4 shadow-md">
           <h1 className="text-[#FB6F92]">Home Catalogue</h1>
           <p className="text-[#000000]">
-            Find all the amazing cleaning and sanitizing products you need in one place!
+            Find all the amazing cleaning and sanitizing products you need in
+            one place!
           </p>
         </section>
 
         <section className="container mx-auto mb-4">
-          <div className="grid grid-cols-12 gap-4 items-baselinez">
-
+          <div className="items-baselinez grid grid-cols-12 gap-4">
             {/* Community Rewards Subscription */}
-            <div className="col-span-12 rounded-lg p-0 shadow-md lg:col-span-4 self-start" 
-              style={styles.subscribeCTA}>
-                <div style={styles.subscribeCTAWrap}>
-                  <h1 className="mb-2 text-xl font-bold text-white flex gap-x-2 items-center"><FontAwesomeIcon icon={faGifts} className="size-10" /> Subscribe Today!</h1>
-                  <p className="mb-2 text-white font-medium">
-                    Get your cleaning supplies conveniently delivered to your doorstep
-                    every month. No need to travel and join the long queues.
+            <div
+              className="col-span-12 self-start rounded-2xl p-2 shadow-md lg:col-span-4"
+              style={styles.subscribeCTA}
+            >
+              <div style={styles.subscribeCTAWrap}>
+                <div className="glassmorphic rounded-xl p-4">
+                  <h1 className="mb-2 flex items-center justify-start gap-x-2 text-center text-3xl font-bold text-white">
+                    <FontAwesomeIcon icon={faGifts} className="size-20" />{" "}
+                    Subscribe Today!
+                  </h1>
+                  <p className="mb-2 font-medium text-white">
+                    Get your cleaning supplies conveniently delivered to your
+                    doorstep every month. No need to travel and join the long
+                    queues. From as little as R200.00 p.m, get the Clean Home
+                    Pack delivered to your doorstep.
                   </p>
-                  <p className="text-white font-medium">
-                    From as little as R150.00 p.m, get the Clean Home Pack delivered to you.
+                  <h2 className="font-bold" style={{ fontSize: "20px" }}>
+                    Subscription Benefits:
+                  </h2>
+                  <p className="ps-2 font-medium text-white">
+                    ⚪ Access to Bubbli discount points (x1 point (Supporter) /
+                    x2 points (Premium) per item at Checkout)
+                    <br />
+                    ⚪ Community rewards giveaways
+                    <br />
+                    ⚪ Free delivery on all purchases with Premium.
+                    <br />
+                    ⚪ Cleaning tips and Newsletter
+                    <br />
                   </p>
-                  <Link to="/clients/subscribe" className="block mt-4 text-center bg-white text-[#FB6F92] py-2 px-4 rounded-lg">
-                    Subscribe Now
-                  </Link>
+                </div>
+                <Link
+                  to="/clients/subscribe"
+                  className="mt-4 block rounded-lg bg-white px-4 py-2 text-center text-[#FB6F92]"
+                >
+                  Subscribe Now
+                </Link>
 
-                  {/* Carousel Section */}
-                  <section className="container mx-auto pt-4">
-                    <Carousel items={carouselItems} />
-                  </section>
-                </div>
+                {/* Carousel Section */}
+                <section className="container mx-auto pt-4">
+                  <Carousel items={carouselItems} />
+                </section>
+              </div>
             </div>
-            
+
             {/* Value Savings Section */}
-            <div className="col-span-12 rounded-lg bg-white p-6z pb-0z lg:col-span-8 shadow-md overflow-hidden">
-              <div className="grid grid-cols-12" style={styles.gradientLeftRight}>
-                <div className="grid col-span-10 gap-y-2 glassmorphic-red p-4 items-center">
-                  <h1 className="mb-2 text-xl font-bold text-white">Get a Value Pack to save on your home sanitation.</h1>
-                  <p className="text-white font-medium">We offer a mix of well-known brands that you trust as well as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹</p>
+            <div className="col-span-12 overflow-hidden rounded-2xl bg-white shadow-md lg:col-span-8">
+              <div
+                className="grid grid-cols-12"
+                style={styles.gradientLeftRight}
+              >
+                <div className="glassmorphic-red col-span-10 grid items-center gap-y-2 p-4">
+                  <div className="glassmorphic rounded-xl p-4">
+                    <h1 className="mb-2 text-xl font-bold text-white">
+                      Get a Value Pack to save on your home sanitation.
+                    </h1>
+                    <p className="font-medium text-white">
+                      We offer a mix of well-known brands that you trust as well
+                      as our own Flavours of Clean 😶‍🌫️🫧🧼🧽🪥🧹
+                    </p>
+                  </div>
                 </div>
-                <div className="flex col-span-2 justify-center items-center p-4 h-auto bg-[#FB6F92]">
-                  <img src={savingsTreeIconWhite} 
-                    alt="savings tree" 
-                    style={{height: "auto", width: "100%", filter: "invert(0)"}} />
+                <div className="col-span-2 flex h-auto items-center justify-center bg-[#FB6F92] p-4">
+                  <img
+                    src={savingsTreeIconWhite}
+                    alt="savings tree"
+                    style={{
+                      height: "auto",
+                      width: "100%",
+                      filter: "invert(0)",
+                    }}
+                  />
                 </div>
               </div>
               <div className="px-6">
                 <ValuePacks />
               </div>
             </div>
-            
           </div>
         </section>
 
         <section className="container mx-auto">
           <span id="anchor-catalogue"></span>
           <section style={styles.filterContainer} className="">
-            <h1 className="pb-4 pt-6 text-[#FB6F92] bg-white text-center"><FontAwesomeIcon icon={faStore} /> <span className="comfortaaz">Bubbli Store</span></h1>
+            <h1 className="bg-white pb-4 pt-6 text-center text-[#FB6F92]">
+              <FontAwesomeIcon icon={faStore} />{" "}
+              <span className="comfortaaz">Bubbli Store</span>
+            </h1>
             {/* Search and Filter Section */}
-            <div style={styles.filterSection} className="flex items-center mb-0 overflow-x-auto">
-              <FontAwesomeIcon icon={faSearch} className="text-[#FB6F92] pr-2 h-6" />
+            <div
+              style={styles.filterSection}
+              className="mb-0 flex items-center overflow-x-auto"
+            >
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="h-6 pr-2 text-[#FB6F92]"
+              />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -192,13 +245,17 @@ function Home() {
           </section>
 
           {/* Product Catalogue */}
-          <section className="glassmorphic py-4">
-            <div className="h-2 w-12 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
-            <h2 className="text-[#FB6F92] text-center">Product Catalogue</h2>
+          <section className="glassmorphicz bubbli-pink-slant-gradient-dark py-4">
+            <div className="mx-auto my-2 h-2 w-12 rounded-xl bg-[#fff] [#FB6F92]"></div>
+            <h2 className="text-center text-[#fff] [#FB6F92]">Product Catalogue</h2>
             <hr className="mt-4" />
             <div style={styles.grid}>
               {paginatedProducts.map((product) => (
-                <div key={product.id} style={styles.card} className="shadow-md">
+                <div
+                  key={product.id}
+                  style={styles.card}
+                  className="rounded-xl shadow-md"
+                >
                   <Link to={`/clients/products/${product.id}`}>
                     <img
                       src={product.image}
@@ -207,7 +264,9 @@ function Home() {
                     />
                   </Link>
                   <h3 style={styles.productCardTitle}>{product.name}</h3>
-                  <p style={styles.productCardPrice} className="pb-2">{product.currencySymbol} {product.price}</p>
+                  <p style={styles.productCardPrice} className="pb-2">
+                    {product.currencySymbol} {product.price}
+                  </p>
                   <button
                     style={styles.addToCartButton}
                     onClick={() => handleAddToCart(product)}
@@ -217,7 +276,7 @@ function Home() {
                 </div>
               ))}
             </div>
-            
+
             {/* Pagination */}
             {/* <div style={styles.pagination} className="mb-6">
               {Array.from({ length: totalPages }, (_, index) => (
@@ -237,7 +296,7 @@ function Home() {
               ))}
             </div> */}
             <div className="flex justify-center">
-              <div className="h-1 w-16 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
+              <div className="mx-auto my-2 h-1 w-16 rounded-xl bg-white [#FB6F92]"></div>
             </div>
             <div className="flex items-center justify-center gap-2 p-4">
               {/* number of items to display */}
@@ -255,16 +314,22 @@ function Home() {
               </select>
             </div>
             <div className="flex justify-center">
-              <div className="h-1 w-16 bg-[#FB6F92] mx-auto my-2 rounded-xl"></div>
+              <div className="mx-auto my-2 h-1 w-16 rounded-xl bg-white [#FB6F92]"></div>
             </div>
-<           div style={styles.pagination} className="mb-6 flex items-center justify-center gap-2">
+            <div
+              style={styles.pagination}
+              className="mb-6 flex items-center justify-center gap-2"
+            >
               <button
                 className="shadow-md"
                 onClick={handlePrevPage}
                 style={styles.transpButton}
                 disabled={currentPage === 1}
               >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-[#FB6F92]"  />
+                <FontAwesomeIcon
+                  icon={faChevronLeft}
+                  className="text-[#FB6F92]"
+                />
               </button>
               {Array.from({ length: totalPages }, (_, index) => (
                 <button
@@ -287,11 +352,12 @@ function Home() {
                 style={styles.transpButton}
                 disabled={currentPage === totalPages}
               >
-                <FontAwesomeIcon icon={faChevronRight} className="text-[#FB6F92]" />
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="text-[#FB6F92]"
+                />
               </button>
             </div>
-
-
           </section>
         </section>
       </div>
@@ -345,8 +411,9 @@ const styles = {
     padding: "20px",
   },
   card: {
+    // border: "1px solid #FB6F92",
+    // borderRadius: "8px",
     border: "1px solid #ddd",
-    borderRadius: "8px",
     padding: "15px",
     textAlign: "center",
     backgroundColor: "#fff",
@@ -358,12 +425,12 @@ const styles = {
     marginBottom: "10px",
   },
   productCardTitle: {
-  color: "#FB6F92",
-  fontSize: "24px",
-    },
+    color: "#FB6F92",
+    fontSize: "24px",
+  },
   productCardPrice: {
-  color: "#000",
-  fontSize: "18px",
+    color: "#000",
+    fontSize: "18px",
   },
   addToCartButton: {
     backgroundColor: "#FB6F92",
@@ -388,7 +455,8 @@ const styles = {
     fontSize: "20px",
   },
   transpButton: {
-    // border: "1px solid #FB6F92",
+    border: "2px solid #fff",
+    // #FB6F92
     height: "72px",
     width: "72px",
     padding: "20px",

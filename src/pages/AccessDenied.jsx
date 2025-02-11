@@ -1,0 +1,55 @@
+import React from 'react'
+import { Link } from "react-router-dom";
+
+function AccessDenied() {
+  return (
+    <div style={styles.container} className="glassmorphic">
+        <div style={{backgroundColor: "#fff", padding: "40px", borderRadius: "16px"}}>
+        <h1 style={styles.heading}>⛔</h1>
+        <p style={styles.message}>Access Denied</p>
+        <div className="flex gap-4 justify-center">
+            <Link to="/" style={styles.homeLink}>
+            Go Back to Home
+            </Link>
+        </div>
+        </div>
+    </div>
+  )
+}
+
+// Styles
+const styles = {
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "80vh",
+      // backgroundColor: "#fff",
+      // backgroundImage: `url(${meshBackgroundRed})`,
+      // backgroundClip: "padding-box",
+      // backgroundSize: "cover", // Ensures the background image covers the entire container
+      // backgroundPosition: "center", // Centers the background image
+      // backgroundAttachment: "fixed", // Fixes the background image in place
+      textAlign: "center",
+      padding: "0px",
+    },
+    heading: {
+      fontSize: "72px",
+      fontWeight: "bold",
+      color: "#dc3545",
+    },
+    message: {
+      fontSize: "24px",
+      margin: "20px 0",
+      color: "#6c757d",
+    },
+    homeLink: {
+      fontSize: "18px",
+      color: "#007bff",
+      textDecoration: "none",
+      fontWeight: "500",
+    },
+  };
+
+export default AccessDenied

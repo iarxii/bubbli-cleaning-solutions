@@ -54,7 +54,7 @@ function Landing() {
             <Link
               to="/clients/home/#anchor-catalogue"
               style={styles.heroButton}
-              className="animate__animated animate__fadeInUp animate__delay-2s"
+              className="animate__animated animate__fadeInUp animate__delay-2s button"
             >
               Shop Now
             </Link>
@@ -110,7 +110,8 @@ function Landing() {
             Discover the perfect cleaning solutions for every need with the
             Bubbli Flavours range.
           </p>
-          <Link to="/clients/bubbli/flavours" style={styles.ctaButton}>
+          <Link to="/clients/bubbli/flavours" style={styles.ctaButton} 
+            className="button">
             Browse Bubbli Flavours
           </Link>
 

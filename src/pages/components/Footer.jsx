@@ -67,6 +67,7 @@ function Footer() {
                 style={styles.socialLink}
                 target="_blank"
                 rel="noreferrer"
+                className="button"
               >
                 <img src={facebookIcon} alt="Facebook" />
               </a>
@@ -75,6 +76,7 @@ function Footer() {
                 style={styles.socialLink}
                 target="_blank"
                 rel="noreferrer"
+                className="button"
               >
                 <img src={twitterXIcon} alt="Twitter" />
               </a>
@@ -83,6 +85,7 @@ function Footer() {
                 style={styles.socialLink}
                 target="_blank"
                 rel="noreferrer"
+                className="button"
               >
                 <img src={whatsappIcon} alt="Whatsapp" />
               </a>
